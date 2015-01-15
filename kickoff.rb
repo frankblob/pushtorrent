@@ -1,4 +1,6 @@
 require 'sinatra'
+require 'mechanize'
+require 'open-uri'
 
 get '/' do
 	erb :search
@@ -6,6 +8,11 @@ end
 
 post '/' do
 	@keywords = params[:keywords]
+	agent = Mechanize.new
+	page = agent.get('http://www.torrentz.eu')
+	page.form.field_with(:name => 'q').value = "#{@keywords}"
+	page = page.form.submit
+	@results = page.links[18..38]
 	erb :results
 end
 
@@ -61,11 +68,15 @@ __END__
 
 @@results
 <h2>Torrent hits:</h2>
-<p>params:<%= @keywords %>.</p>
-<p>Search results: | #seeders | #date_uploaded</p>
-<p><a href="#">Result 001</a> | seeders | uploaded_date<br/>
+<p>Search keywords: <%= @keywords %>.</p>
+<p>Search results: | #seeders | #date_uploaded | #file_size</p>
+<p><a href="#">Result 001</a> | seeders | uploaded_date | size<br/>
 text snippet | photo (hover)<br/>
 <a href="#">wikipedia</a> | <a href="#">imdb</a></p>
+<ul><% @results.each do |li| %>
+<li><%= li %></li>
+<% end %>
+</ul>
 
 @@four04
 <h1>Can we help you in another way, perhaps?</h1>
