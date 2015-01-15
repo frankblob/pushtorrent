@@ -72,12 +72,12 @@ __END__
 </div>
 
 @@results
-<h2>Get notified</h2>
-<p>We will immediately notify you when new <strong>'<%= @keywords %>'</strong> torrents are released and ready for you to download. <br/>You will only be notified about newer torrents than those listed below. You already know about them, right?</p>
+<h2>Get notified about new '<%= @keywords %>' torrents</h2>
+<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are ready for you to download.<br/></p>
 <table><tr>
 <td>
 Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
-<small><a href="#">View example</a>.</small> 
+<small>Since you already know about the torrents below,<br/>you will only be notified about new releases. Nifty!<br/><a href="#">View example</a></small> 
 </td>
 <td>
 <div>
@@ -88,7 +88,7 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 </td>
 </tr>
 </table>
-<h3>Search results: #file_size | #seeders | #date_uploaded </h3>
+<h3>Search results for '<%= @keywords %>': #file_size | #seeders | #date_uploaded </h3>
 <ul><% @items.each do |li| %>
 <li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %><br/>
 <br/>
