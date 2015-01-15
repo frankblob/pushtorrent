@@ -1,28 +1,28 @@
 #Welcome to 'Torrent Watch' 
-## AKA 'contributions AND new name suggestions are welcome'
+## AKA 'contributions/name suggestions are welcome'
 
 Built with Ruby 2.2.0, Sinatra 1.4.5 and Nokogiri 1.6.5.
 
 ### Description of the web app's basic functionality
-No need to manually for users to do daily searches for new 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar torrents. Opt-in to receive email notification when new torrents matching your search terms become available.  
+No need for users to manually do daily torrent searches for new 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar. Torrent Watch let users search and opt-in to receive email notifications when new torrents are ready for download.  
 
-Why not get an email when torrents you seek are released?
+Why not get an email when the torrents you seek are released?
 
 ##### Roadmap / to-do list for future functionality and features
 
 1. Timedate sorted torrent list, but allowing user to do size and seeders.
 2. Dynamically generate static pages for notification search terms
-	Include site map, with updated child nodes.
+  -Include site map, with updated child nodes.
 3. Add bootstrap and design the layout with clear CTA
 4. Add DB for user registration and user management of notifications
-	Sign up
-	Log in
-	Manage notifications
+	-Sign up
+	-Log in
+	-Manage notifications
 5. Develop function for daily querying of notification search terms
-	Dynamically generate emails when new releases are found
-		Update timedate field for notification, to secure only new releases are searched
+	-Dynamically generate emails when new releases are found
+		--Update timedate field for notification, to secure only new releases are searched
 6. Install user forum
-	Reuse user DB, to avoid double sign up
+	-Reuse user DB, to avoid double sign up
 7. Produce simple instructional video for home page
 8. Generate email template and create example email for viewing
 
