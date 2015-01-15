@@ -9,9 +9,15 @@ end
 post '/' do
 	keywords = params[:keywords].tr('^-a-zA-z0-9_.', ' ').split(' ').join('+')
 	url = 'https://torrentz.eu/feed?q=' + keywords
+	@keywords = keywords.split('+').join(' ')
 	data = Nokogiri::XML(open(url))
 	@items = data.xpath('//channel/item')
-	erb :results
+	if @items.empty?
+		@items = nil
+		erb :zerohits
+	else
+		erb :results
+	end
 end
 
 not_found do
@@ -48,7 +54,8 @@ __END__
 
 	<footer>
     <p><small>Actionable intel on the torrents you need.<br/>
-    SSL: <a href="/">Torrent watch</a> | <a href="/about">About</a> | <a href="/contact">Contact</a></small></p>
+    SSL: <a href="/">Torrent watch</a> | <a href="/about">About</a> | <a href="/contact">Contact</a><br/>
+    Disclaimer: Torrent Watch does neither support nor condone using torrents for illegal purposes or downloading copyrighted material. Think!</small></p>
   </footer>
 
 @@search
@@ -65,18 +72,34 @@ __END__
 </div>
 
 @@results
-<h2>Torrent hits:</h2>
-<p>Search results: | #seeders | #date_uploaded | #file_size</p>
-<p><a href="#">Result 001</a> | seeders | uploaded_date | size<br/>
-text snippet | photo (hover)<br/>
-<a href="#">wikipedia</a> | <a href="#">imdb</a></p>
+<h2>Get notified</h2>
+<p>We will immediately notify you when new <strong>'<%= @keywords %>'</strong> torrents are released and ready for you to download. <br/>You will only be notified about newer torrents than those listed below. You already know about them, right?</p>
+<table><tr>
+<td>
+Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
+<small><a href="#">View example</a>.</small> 
+</td>
+<td>
+<div>
+<form action='/notification' method='POST'>
+	<input type='text' placeholder='email@example.com' name='email'><input type='submit' value='Get notified'>
+</form>
+<small>No monkey business. Promise.</small>
+</td>
+</tr>
+</table>
+<h3>Search results: #file_size | #seeders | #date_uploaded </h3>
 <ul><% @items.each do |li| %>
-	<li><%= li.at_css('title').text %></li>
-	<li><%= li.at_css('link').text %></li>
-	<li><%= li.at_css('description').text %></li>
-	<br/>
+<li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %><br/>
+<br/>
 <% end %>
 </ul>
+
+@@zerohits
+<h2>Get notified!</h2>
+<p>We will continuously monitor the torrent indexes for <strong>'<%= @keywords %>'</strong> for you.</p>
+<p>Immediately your wanted torrent comes online we will send you a notification. Kick back, relax and enjoy. The good news is soon to come...</p>
+<p>Way better this way...</p>
 
 @@four04
 <h1>Can we help you in another way, perhaps?</h1>
