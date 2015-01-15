@@ -12,17 +12,17 @@ Why not get an email when the torrents you seek are released?
 
 1. Timedate sorted torrent list, but allowing user to do size and seeders.
 2. Dynamically generate static pages for notification search terms
-  -Include site map, with updated child nodes.
+   *Include site map, with updated child nodes.
 3. Add bootstrap and design the layout with clear CTA
 4. Add DB for user registration and user management of notifications
-	-Sign up
-	-Log in
-	-Manage notifications
+   *Sign up
+   *Log in
+   *Manage notifications
 5. Develop function for daily querying of notification search terms
-	-Dynamically generate emails when new releases are found
-		--Update timedate field for notification, to secure only new releases are searched
+  *Dynamically generate emails when new releases are found
+	  *Update timedate field for notification, to secure only new releases are searched
 6. Install user forum
-	-Reuse user DB, to avoid double sign up
+  *Reuse user DB, to avoid double sign up
 7. Produce simple instructional video for home page
 8. Generate email template and create example email for viewing
 
@@ -36,7 +36,7 @@ In short I'm a nobody, newbie and non-programmer dabbling in my first attempts a
 2. Is it worth it to manually set @variable = nil, when no longer in use - or will Ruby GC do it for me?
 
 ##Join this project
-All help is welcome. I'm glad to share this project with any interested contributors. Newbie and seasoned. Contribute as you best can.
+All help is welcome. I'm glad to share this project with any interested contributors; newbie, experienced, young and old, english-speaking or english-trying. Contribute as you best can.
 
 Okay, that's it, I guess. 
 
