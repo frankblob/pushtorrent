@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'mechanize'
+require 'nokogiri'
 require 'open-uri'
 
 get '/' do
@@ -7,12 +7,10 @@ get '/' do
 end
 
 post '/' do
-	@keywords = params[:keywords]
-	agent = Mechanize.new
-	page = agent.get('http://www.torrentz.eu')
-	page.form.field_with(:name => 'q').value = "#{@keywords}"
-	page = page.form.submit
-	@results = page.links[18..38]
+	keywords = params[:keywords].tr('^-a-zA-z0-9_.', ' ').split(' ').join('+')
+	url = 'https://torrentz.eu/feed?q=' + keywords
+	data = Nokogiri::XML(open(url))
+	@items = data.xpath('//channel/item')
 	erb :results
 end
 
@@ -68,13 +66,15 @@ __END__
 
 @@results
 <h2>Torrent hits:</h2>
-<p>Search keywords: <%= @keywords %>.</p>
 <p>Search results: | #seeders | #date_uploaded | #file_size</p>
 <p><a href="#">Result 001</a> | seeders | uploaded_date | size<br/>
 text snippet | photo (hover)<br/>
 <a href="#">wikipedia</a> | <a href="#">imdb</a></p>
-<ul><% @results.each do |li| %>
-<li><%= li %></li>
+<ul><% @items.each do |li| %>
+	<li><%= li.at_css('title').text %></li>
+	<li><%= li.at_css('link').text %></li>
+	<li><%= li.at_css('description').text %></li>
+	<br/>
 <% end %>
 </ul>
 
