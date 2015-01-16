@@ -1,10 +1,10 @@
 # Welcome to 'Torrent Watch' 
 ## AKA 'contribs/name suggestions are welcome'
 
-Built with Ruby 2.2.0, [Sinatra](www.sinatrarb.com) 1.4.5 and [Nokogiri](www.nokogiri.org/) 1.6.5.
+Built with Ruby 2.2.0, [Sinatra](http://sinatrarb.com) 1.4.5 and [Nokogiri](http://nokogiri.org/) 1.6.5.
 
 ### Description of the web app's basic functionality
-No need for users to manually do daily torrent searches for new 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar. Torrent Watch let users search and opt-in to receive email notifications when new torrents are ready for download.  
+No need for users to manually do daily torrent searches for new 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar. Torrent Watch lets users search and opt-in to receive email notifications when new torrents are ready for download.  
 
 Why not get an email when the torrents you seek are released?
 
@@ -29,7 +29,7 @@ Why not get an email when the torrents you seek are released?
 ##### About me
 The project described above seems more complex than actually doable for someone with my current coding skill set. My personal goal is to hack away at this steep challenge and learn as much as possible.  
 
-In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at Ruby, object-oriented programming and GitHub. Torrent Watch is my first web application attempt besides auto-deploying a [RailsBricks3](wwww.railsbricks.net) app, since I could not get anything self-coded to work on Heroku :)
+In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at Ruby, object-oriented programming and GitHub. Torrent Watch is my first web application attempt besides auto-deploying a [RailsBricks3](http://railsbricks.net) app, since I could not get anything self-coded to work on Heroku :)
 
 ##### Ruby questions I currently wonder about... 
 1. Does instance variables use more memory than regular variables?
@@ -40,4 +40,4 @@ All help is welcome. I'm glad to share this project with any interested contribu
 
 Okay, that's it, I guess. 
 
-**Stay cheerful.**
+**Stay cheerful**
