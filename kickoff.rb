@@ -8,17 +8,14 @@ get '/' do
 end
 
 post '/' do
+	redirect back if params[:keywords].empty?
 	keywords = params[:keywords].tr('^-a-zA-z0-9_.', ' ').split(' ').join('+')
 	url = 'https://torrentz.eu/feed?q=' + keywords
 	@keywords = keywords.split('+').join(' ')
 	data = Nokogiri::XML(open(url))
-	@items = data.xpath('//channel/item').sort{ |a,b| a.at_css('pubDate').text.to_time <=> b.at_css('pubDate').text.to_time }.reverse
-	if @items.empty?
-		@items = nil
-		erb :zerohits
-	else
-		erb :results
-	end
+	# Maybe do selection of attributes title, url and description (size, seeders and converted timedate) only for the variable due to memory optimization?
+	@items = data.xpath('//channel/item').sort_by{|x| x.at_css('pubDate').text.to_time}.reverse
+	@items.empty? ? (erb :zerohits) : (erb :results)
 end
 
 not_found do

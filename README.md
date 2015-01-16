@@ -1,7 +1,7 @@
 # Welcome to 'Torrent Watch' 
 ## AKA 'contribs/name suggestions are welcome'
 
-Built with Ruby 2.2.0, [Sinatra](http://sinatrarb.com) 1.4.5 and [Nokogiri](http://nokogiri.org/) 1.6.5.
+Built with Ruby 2.2.0, [Sinatra](http://sinatrarb.com) 1.4.5 and [Nokogiri](http://www.nokogiri.org/) 1.6.5.
 
 ### Description of the web app's basic functionality
 No need for users to manually do daily torrent searches for new 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar. Torrent Watch lets users search and opt-in to receive email notifications when new torrents are ready for download.  
