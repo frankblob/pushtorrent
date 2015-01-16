@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'nokogiri'
 require 'open-uri'
+require 'active_support/core_ext/string/conversions'
 
 get '/' do
 	erb :search
@@ -11,7 +12,7 @@ post '/' do
 	url = 'https://torrentz.eu/feed?q=' + keywords
 	@keywords = keywords.split('+').join(' ')
 	data = Nokogiri::XML(open(url))
-	@items = data.xpath('//channel/item')
+	@items = data.xpath('//channel/item').sort{ |a,b| a.at_css('pubDate').text.to_time <=> b.at_css('pubDate').text.to_time }.reverse
 	if @items.empty?
 		@items = nil
 		erb :zerohits
