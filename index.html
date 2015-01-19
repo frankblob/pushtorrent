@@ -59,10 +59,10 @@
 </ul>
 </li>
 <li>Add bootstrap and design the layout with clear CTA</li>
-<li>Add DB for user registration and user management of notifications
+<li>Add ORM for persistence layer (<del><a href="http://rom-rb.org">ROM</a></del>, <a href="http://sequel.jeremyevans.net/">Sequel</a> or <del><a href="http://lotusrb.org/">Lotus::Model</a></del> for user registration and user management of notifications
 
 <ul>
-<li>Sign up</li>
+<li>Sign up (self-coded, <a href="https://rubygems.org/gems/warden">Warden</a> or <a href="https://github.com/intridea/omniauth-identity">Omniauth Identity</a>, <a href="https://github.com/shf/sinatra-can">CanCan</a>, etc. + email routine</li>
 <li>Log in</li>
 <li>Manage notifications</li>
 </ul>
@@ -74,7 +74,7 @@
 <li>Update timedate field for notification, to secure only new releases are searched</li>
 </ul>
 </li>
-<li>Install user forum
+<li>Develop / install user forum
 
 <ul>
 <li>Reuse user DB from app, to avoid double sign up in forum</li>
@@ -82,6 +82,9 @@
 </li>
 <li>Produce simple instructional video for home page</li>
 <li>Generate email template and create example email for viewing</li>
+<li>Tests.</li>
+<li>Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum</li>
+<li>Swap to PostgreSQL and deploy :)</li>
 </ol>
 
 <h5>
@@ -97,6 +100,7 @@
 <ol>
 <li>Does instance variables use more memory than regular variables?</li>
 <li>Is it worth it to manually set <a href="https://github.com/variable" class="user-mention">@variable</a> = nil, when no longer in use - or will Ruby GC do it for me?</li>
+<li>Will performance and memory utilization improve by replacing Nokogiri with <a href="https://rubygems.org/gems/curb">Curb</a>?</li>
 </ol>
 
 <h2>
