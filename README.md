@@ -36,7 +36,7 @@ In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at
 
 ##### Ruby questions I currently wonder about... 
 1. Does instance variables use more memory than regular variables?
-2. Is it worth it to manually set @variable = nil, when no longer in use - or will Ruby GC do it for me?
+2. Is it worth it to manually set an instance variable = nil, when no longer in use - or will Ruby GC do it for me?
 3. Will performance and memory utilization improve by replacing Nokogiri with [Curb](https://rubygems.org/gems/curb)?
 
 ## Join this project
