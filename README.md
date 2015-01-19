@@ -14,8 +14,8 @@ Why not get an email when the torrents you seek are released?
 2. Dynamically generate static pages for notification search terms
   * Include site map, with updated child nodes.
 3. Add bootstrap and design the layout with clear CTA
-4. Add DB for user registration and user management of notifications
-  * Sign up
+4. Add persistence layer ([ROM](http://rom-rb.org), [Sequel](http://sequel.jeremyevans.net/) or [Lotus::Model](http://lotusrb.org/) for user registration and user management of notifications
+  * Sign up + email routine (sendgrid?)
   * Log in
   * Manage notifications
 5. Develop function for daily querying of notification search terms
@@ -25,6 +25,8 @@ Why not get an email when the torrents you seek are released?
   * Reuse user DB from app, to avoid double sign up in forum
 7. Produce simple instructional video for home page
 8. Generate email template and create example email for viewing
+9. Tests.
+10. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum 
 
 ##### About me
 The project described above seems more complex than actually doable for someone with my current coding skill set. My personal goal is to hack away at this steep challenge and learn as much as possible.  

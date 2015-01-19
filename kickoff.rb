@@ -2,6 +2,10 @@ require 'sinatra'
 require 'nokogiri'
 require 'open-uri'
 require 'active_support/core_ext/string/conversions'
+#Gems and config for Sequel ORM data persistence 
+#require 'sequel'
+#require 'sqlite3'
+#DB = Sequel.sqlite('app.db')
 
 get '/' do
 	erb :search
@@ -13,9 +17,32 @@ post '/' do
 	url = 'https://torrentz.eu/feed?q=' + keywords
 	@keywords = keywords.split('+').join(' ')
 	data = Nokogiri::XML(open(url))
-	# Maybe do selection of attributes title, url and description (size, seeders and converted timedate) only for the variable due to memory optimization?
 	@items = data.xpath('//channel/item').sort_by{|x| x.at_css('pubDate').text.to_time}.reverse
 	@items.empty? ? (erb :zerohits) : (erb :results)
+end
+
+get '/user' do
+	erb :login
+end
+
+post '/user' do
+	erb :userpage
+end
+
+get '/about' do
+	erb :about
+end
+
+get '/contact' do
+	erb :contact
+end
+
+get '/signup' do
+	erb :signup
+end
+
+get '/forum' do
+	erb :forum
 end
 
 not_found do
@@ -41,7 +68,7 @@ __END__
 			<div><h1><a href="/">Torrent Watch</a></h1>
       <h3>Get torrent notifications in your inbox</h3>
       </div>
-			<div>Sign up | Log in | Forum
+			<div><a href="/signup">Sign up</a> | <a href="/user">Log in</a> | <a href="/forum">Forum</a>
 			</div>
     </hgroup>
   </header>
@@ -98,6 +125,85 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 <p>We will continuously monitor the torrent indexes for <strong>'<%= @keywords %>'</strong> for you.</p>
 <p>Immediately your wanted torrent comes online we will send you a notification. Kick back, relax and enjoy. The good news is soon to come...</p>
 <p>Way better this way...</p>
+
+@@userpage
+<strong>Change menu to "Log out"...</strong>
+<h2>You are now logged in to Torrent Watch.</h2>
+<div>
+<p>
+Your notifications: sort by name | sort by created_date <br/>
+<ul>
+<li>
+"Fictional user FLAC 01" - <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
+Notification: immediately, daily, weekly [x], monthly.
+</li>
+<li>
+"Fictional user movie 01" - <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
+Notification: immediately, daily, weekly, monthly [x].
+</li>
+<li>
+"Fictional user epub 01" - <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
+Notification: immediately, daily, weekly [x], monthly.
+</li>
+<li>
+"Fictional user mp3 album 01" - <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
+Notification: immediately [x], daily, weekly, monthly.
+</li>
+<li>
+"Fictional user mp3 album 02" - <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
+Notification: immediately [x], daily, weekly, monthly.
+</li>
+<p>
+Active notification trackers: 5</p>
+<p><a href="#">Notification archive</a> (22 listings)
+</p>
+
+<h2>Profile info</h2>
+Name: Firstname Lastname [<a href="#">edit</a>]<br/>
+Member since: datetime<br/>
+Email: your@example.com [<a href="#">change</a>]<br/>
+Password: [<a href="#">change</a>]<br/>
+Number of <a href="#">forum</a> posts: 1<br/>
+Last forum post: <a href="#">*NOOB* Why is there no category selection possible?</a><br/>
+<a href="#">Delete account</a> (confirmation required)<br/>
+</p>
+</div>
+
+@@login
+<h2>Log in to Torrent Watch</h2>
+<div>
+<form action='/user' method='POST'>
+	<input type='text' placeholder='Email address' name='username'>
+	<input type='text' placeholder='Password' name='password'>
+	<input type='submit' value='Log in'>
+</form>
+<p>Enter your email address and password if you are an existing user.</p>
+<p>If you want to create an account, then <a href="#">sign up</a> immediately!
+</div>
+
+@@about
+<h2>About Torrent Watch</h2>
+<div>
+<p>Details, feature roadmap, history, team, etc.</p>
+</div>
+
+@@contact
+<h2>Contact</h2>
+<div>
+<p>FAQ and Contact form</p>
+</div>
+
+@@forum
+<h2>Forum</h2>
+<div>
+<p>Integrated forum or redirect to stand-alone forum.</p>
+</div>
+
+@@signup
+<h2>Sign up - join!</h2>
+<div>
+<p>Sign up form with simple email and password validation.</p>
+</div>
 
 @@four04
 <h1>Can we help you in another way, perhaps?</h1>
