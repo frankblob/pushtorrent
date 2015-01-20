@@ -1,0 +1,22 @@
+<h2>Get notified about new '<%= @keywords %>' torrents</h2>
+<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are ready for you to download.<br/></p>
+<table><tr>
+<td>
+Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
+<small>Since you already know about the torrents below,<br/>you will only be notified about new releases. Nifty!<br/><a href="#">View example</a></small> 
+</td>
+<td>
+<div>
+<form action='/notification' method='POST'>
+	<input type='text' placeholder='email@example.com' name='email'><input type='submit' value='Get notified'>
+</form>
+<small>No monkey business. Promise.</small>
+</td>
+</tr>
+</table>
+<h3>Search results for '<%= @keywords %>': #file_size | #seeders | #date_uploaded </h3>
+<ul><% @items.each do |li| %>
+<li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %><br/>
+<br/>
+<% end %>
+</ul>
