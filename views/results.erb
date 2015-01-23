@@ -7,10 +7,14 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 </td>
 <td>
 <div>
-<form action='/notification' method='POST'>
-	<input type='text' placeholder='email@example.com' name='email'><input type='submit' value='Get notified'>
+<%# Display block below if no user session%>
+<form action='/tracker' method='POST'>
+	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords">
+	<input type='submit' value='Get notified'>
 </form>
 <small>No monkey business. Promise.</small>
+<%# Display alternative block with user-id from session if user session %>
+</div>
 </td>
 </tr>
 </table>

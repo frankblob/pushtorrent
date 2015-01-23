@@ -9,7 +9,7 @@ DB = Sequel.connect "sqlite://db/torwa-ar.db"
 Sequel::Model.plugin :timestamps, :update_on_create=>true
 
 class User < Sequel::Model
-	plugin :secure_password
+	plugin :secure_password, include_validations: false
 	
 	one_to_many :user_trackers
 	many_to_many :trackers, join_table: :user_trackers
@@ -49,13 +49,14 @@ post '/login' do
 	redirect_back
 end
 
-get '/signup' do # display signup form
-	@user = User.new
-	erb :signup #redirect signup-confirmation, back, home or user?
+get '/signup' do
+	erb :signup_form
 end
 
 post '/signup' do #create user
-	erb :signup_confirm #|| redirect :back, :home or :user?
+	user = User.new(params[:user])
+	user.save
+	redirect to("/user/#{ user.id }") #|| redirect back or:home?
 end
 
 get '/user/:id' do
@@ -74,6 +75,14 @@ post '/tracker' do
 
 #if email does not exist
 # display email + torrent notification and settings
+
+#	user = User.new(params[:email])
+#	user.save
+#	tracker = Tracker.new(params[:keywords])
+#	tracker.save #check routine for existing
+# usertracker = UserTracker.new(user_id: user.id, tracker_id: tracker.id)
+# usertracker.save
+#	redirect to("/user/#{ user.id }") #|| redirect back or:home?
 
 #if email does exist, with user_type = 0
 #display current tracker, offer to replace and to signup

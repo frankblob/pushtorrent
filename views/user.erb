@@ -23,7 +23,7 @@ Active trackers: <%= @trackers.count %></p>
 
 <h2>Profile info</h2>
 Name: <%= @user.name ||= 'You have not entered your name yet!' %> [<a href="#">edit</a>]<br/>
-Member since: <%= @user.created_at %><br/>
+Member since: <%= @user.created_at.to_date %><br/>
 Email: <%= @user.email %> [<a href="#">change</a>]<br/>
 Password: [<a href="#">change</a>]<br/>
 Number of <a href="#">forum</a> posts: 1<br/>
