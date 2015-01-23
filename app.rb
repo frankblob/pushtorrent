@@ -60,6 +60,7 @@ end
 
 get '/user/:id' do
 	#if user == logged in
+	@user = User.where(id: (params[:id])).first
 	usertrackers = UserTracker.where(user_id: (params[:id])).all
 	@trackers = usertrackers.map{|x| x.tracker}
 	erb :user
