@@ -8,7 +8,7 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 <td>
 <div>
 <%# Display block below if no user session%>
-<form action='/tracker' method='POST'>
+<form action='/trackers' method='POST'>
 	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords">
 	<input type='submit' value='Get notified'>
 </form>

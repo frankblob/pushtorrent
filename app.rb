@@ -1,12 +1,18 @@
 require 'sinatra'
 require 'sequel'
 require 'sequel_secure_password'
+#require 'warden'
+#require 'sinatra/flash'
 require 'open-uri'
 require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
 
+#require_relative 'auth/init'
+
 DB = Sequel.connect "sqlite://db/torwa-ar.db"
 Sequel::Model.plugin :timestamps, :update_on_create=>true
+
+#use Rack::Session::Cookie, secret: "FiliBu7SterHankerCH11!Fen"
 
 class User < Sequel::Model
 	plugin :secure_password, include_validations: false
@@ -40,37 +46,37 @@ post '/' do
 	@items.empty? ? (erb :zerohits) : (erb :results)
 end
 
-get '/login' do # display login form
-	erb :login
-end
-
-post '/login' do
-	#create user session
-	redirect_back
-end
-
-get '/signup' do
+get '/signup' do #display signup form
 	erb :signup_form
 end
 
 post '/signup' do #create user
 	user = User.new(params[:user])
-	user.save
-	redirect to("/user/#{ user.id }") #|| redirect back or:home?
+	if user.save
+		redirect to("/user/#{ user.id }") #|| redirect back or:home?
+	else 
+		redirect "/signup"
+	end
+end
+
+get '/user' do #display login form
+	erb :login
 end
 
 get '/user/:id' do
-	#if user == logged in
 	@user = User.where(id: (params[:id])).first
 	usertrackers = UserTracker.where(user_id: (params[:id])).all
 	@trackers = usertrackers.map{|x| x.tracker}
 	erb :user
-	#if user != logged in
-	#erb :login
-	#erb :loginorsignup / :access
 end
 
-post '/tracker' do
+get '/trackers' do
+  "Tracker GET page" #purpose unclear...
+end	
+
+post '/trackers' do
+	"Tracker added for #{params[:keywords]}"
+	# redirect_back or redirect "/trackers"?
 #if current_user does not exists:
 
 #if email does not exist

@@ -11,7 +11,7 @@ alphabetical:
 
 <% @trackers.sort_by(&:updated_at).reverse.each do |tracker| %>
 <li>
-<%= tracker[:keywords] %> <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
+<strong><%= tracker[:keywords] %></strong> <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
 Notification: immediately [x], daily, weekly, monthly [x].</li>
 <% end %>
 
