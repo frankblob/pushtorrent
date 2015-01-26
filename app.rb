@@ -1,24 +1,30 @@
 require 'sinatra'
 require 'sequel'
 require 'sequel_secure_password'
-#require 'warden'
-#require 'sinatra/flash'
+require 'bcrypt'
 require 'open-uri'
 require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
 
-#require_relative 'auth/init'
-
 DB = Sequel.connect "sqlite://db/torwa-ar.db"
 Sequel::Model.plugin :timestamps, :update_on_create=>true
 
-#use Rack::Session::Cookie, secret: "FiliBu7SterHankerCH11!Fen"
+use Rack::Session::Cookie, secret: "FiliBu7SterHankerCH11!Fen"
 
 class User < Sequel::Model
 	plugin :secure_password, include_validations: false
 	
 	one_to_many :user_trackers
 	many_to_many :trackers, join_table: :user_trackers
+
+	def authenticate(unencrypted_password)
+  	if BCrypt::Password.new(password_digest) == unencrypted_password
+  		return true
+  	else
+  		return false
+  	end
+  end
+
 end
 
 class UserTracker < Sequel::Model
@@ -46,35 +52,56 @@ post '/' do
 	@items.empty? ? (erb :zerohits) : (erb :results)
 end
 
-get '/signup' do #display signup form
+get '/signup/?' do #display signup form
 	erb :signup_form
 end
 
-post '/signup' do #create user
+post '/signup/?' do #create user
 	user = User.new(params[:user])
 	if user.save
 		redirect to("/user/#{ user.id }") #|| redirect back or:home?
 	else 
-		redirect "/signup"
+		redirect '/signup'
 	end
 end
 
-get '/user' do #display login form
+get '/login/?' do #display login form
 	erb :login
 end
 
-get '/user/:id' do
-	@user = User.where(id: (params[:id])).first
-	usertrackers = UserTracker.where(user_id: (params[:id])).all
-	@trackers = usertrackers.map{|x| x.tracker}
-	erb :user
+post '/login/?' do #authenticate user and set session
+	redirect '/login' unless user = User.where(email: params[:user][:email]).first
+	if BCrypt::Password.new(user.password_digest) == params[:user][:password]
+		session[:user_id] = user.id
+		redirect "/user/#{session[:user_id]}"
+		#env[return_path] (set as attempted path when unauthorized) ? redirect back : '/'
+	else
+		#session[:user_id] = nil
+		redirect '/login'
+	end
 end
 
-get '/trackers' do
+get '/logout/?' do
+	session[:user_id] = nil
+	redirect '/'
+end
+
+get '/user/:id/?' do
+	if session[:user_id] == params[:id].to_i
+		@user = User.where(id: (params[:id])).first
+		usertrackers = UserTracker.where(user_id: (params[:id])).all
+		@trackers = usertrackers.map{|x| x.tracker}
+		erb :user
+	else
+		"Nope. Not authorized."
+	end
+end
+
+get '/trackers/?' do
   "Tracker GET page" #purpose unclear...
 end	
 
-post '/trackers' do
+post '/trackers/?' do
 	"Tracker added for #{params[:keywords]}"
 	# redirect_back or redirect "/trackers"?
 #if current_user does not exists:
@@ -101,15 +128,15 @@ post '/trackers' do
 
 end
 
-get '/about' do
+get '/about/?' do
 	erb :about
 end
 
-get '/contact' do
+get '/contact/?' do
 	erb :contact
 end
 
-get '/forum' do
+get '/forum/?' do
 	erb :forum
 end
 
