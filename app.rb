@@ -37,6 +37,12 @@ class Tracker < Sequel::Model
 		many_to_many :users, join_table: :user_trackers
 end
 
+helpers do
+	def current_user?
+		session[:user_id]
+	end
+end
+
 get '/' do
 	erb :search
 end

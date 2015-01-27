@@ -16,7 +16,10 @@
 			<div><h1><a href="/">Torrent Watch</a></h1>
       <h3>Get torrent notifications in your inbox</h3>
       </div>
-			<div><a href="/signup">Sign up</a> | <a href="/login">Log in</a> | <a href="/forum">Forum</a>
+			<% if current_user? %>
+			<a href="/logout">Log out</a>
+			<% else %>
+			<div><a href="/signup">Sign up</a> | <a href="/login">Log in</a><% end %> | <a href="/forum">Forum</a>
 			</div>
     </hgroup>
   </header>
