@@ -26,8 +26,8 @@ class User < Sequel::Model
   	end
   end
 
-  def get(id=nil)
-  	DB[:user][id: id].first
+  def self.get(id=nil)
+  	User[id: id]
   end
   
 end
@@ -113,7 +113,6 @@ get '/trackers/?' do
 end	
 
 post '/trackers/?' do
-	erb "Tracker added for #{params[:keywords]}. #{params}"
 	# redirect_back or redirect "/trackers"?
 #if current_user does not exists:
 
@@ -136,6 +135,18 @@ post '/trackers/?' do
 
 #if current_user exists:
 #add and display added + highlighted tracker in user's tracker list
+#Tracker added for Equalizer 2014. {"user_id"=>"1", "keywords"=>"Equalizer 2014"} 
+	if current_user?
+		# split logic depending on user type
+		user = User.get(params[:user_id])
+		#timestamp = grab from newest torrent listed ||= Time.now(utc)
+		Tracker[keywords: params[:keywords]].nil? ? tracker = Tracker.create(keywords: (params[:keywords], timestamp: params[:timestamp]) : Tracker[keywords: params[:keywords]]
+		user.add_user_tracker(tracker: tracker, timestamp: timestamp)
+			erb "Tracker added for #{params[:keywords]}.\n#{params}"
+	else
+		#ask for email and store as user type 0
+		erb "We need your email to notify for new torrents - or you can signup to get 5 trackers."
+	end
 
 end
 
