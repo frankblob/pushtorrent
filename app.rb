@@ -1,10 +1,11 @@
 require 'sinatra'
 require 'sequel'
 require 'sequel_secure_password'
-require 'bcrypt'
+require 'bcrypt' #needed?
 require 'open-uri'
 require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
+require "sinatra/reloader" if development?
 
 DB = Sequel.connect "sqlite://db/torwa-ar.db"
 Sequel::Model.plugin :timestamps, :update_on_create=>true
@@ -25,6 +26,10 @@ class User < Sequel::Model
   	end
   end
 
+  def get(id=nil)
+  	DB[:user][id: id].first
+  end
+  
 end
 
 class UserTracker < Sequel::Model
@@ -108,7 +113,7 @@ get '/trackers/?' do
 end	
 
 post '/trackers/?' do
-	"Tracker added for #{params[:keywords]}"
+	erb "Tracker added for #{params[:keywords]}. #{params}"
 	# redirect_back or redirect "/trackers"?
 #if current_user does not exists:
 
