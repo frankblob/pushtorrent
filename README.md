@@ -10,16 +10,16 @@ Why not get an email when the torrents you seek are released?
 
 ##### Roadmap / to-do list for future functionality and features
 
-1. ~~Timedate sorted torrent list~~, allowing users to sort on size and seeders.
+1. Timedate sorted torrent list, allowing users to sort on size and seeders.
 2. Dynamically generate static pages for notification search terms
   * Include site map, with updated child nodes.
 3. Add bootstrap and design the layout with clear CTA
-4. Add ORM for persistence layer (~~[ROM](http://rom-rb.org)~~, [Sequel](http://sequel.jeremyevans.net/) or ~~[Lotus::Model](http://lotusrb.org/)~~ for user registration and user management of notifications
-  * Sign up (self-coded, [Warden](https://rubygems.org/gems/warden) or [Omniauth Identity](https://github.com/intridea/omniauth-identity), [CanCan](https://github.com/shf/sinatra-can), etc. + email routine
+4. Add ORM for persistence layer ([ROM](http://rom-rb.org), [Sequel](http://sequel.jeremyevans.net/), [ActiveRecord](http://github.com/janko-m/sinatra-activerecord) or [Lotus::Model](http://lotusrb.org/) for user registration and user management of notifications
+  * Sign up (self-coded, [Warden](https://rubygems.org/gems/warden) or [Omniauth Identity](https://github.com/intridea/omniauth-identity), [CanCan](https://github.com/shf/sinatra-can), etc. + email [check](https://github.com/mailcheck/mailcheck) & routine
   * Log in
   * Manage notifications
 5. Develop function for daily querying of notification search terms
-  * Dynamically generate emails when new releases are found
+  * Dynamically generate emails when new releases are found (+'buffer' model for interval digests?)
   * Update timedate field for notification, to secure only new releases are searched
 6. Develop / install user forum
   * Reuse user DB from app, to avoid double sign up in forum
@@ -27,7 +27,8 @@ Why not get an email when the torrents you seek are released?
 8. Generate email template and create example email for viewing
 9. Tests.
 10. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
-11. Swap to PostgreSQL and deploy :)
+11. Swap to PostgreSQL, add [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
+12. Deploy :)
 
 ##### About me
 The project described above seems more complex than actually doable for someone with my current coding skill set. My personal goal is to hack away at this steep challenge and learn as much as possible.  
@@ -38,6 +39,7 @@ In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at
 1. Does instance variables use more memory than regular variables?
 2. Is it worth it to manually set an instance variable = nil, when no longer in use - or will Ruby GC do it for me?
 3. Will performance and memory utilization improve by replacing Nokogiri with [Curb](https://rubygems.org/gems/curb)?
+4. Is it necessary to implement something akin to [referential integrity](https://github.com/orcasnet/activerecord-referential_integrity) for foreign keys?
 
 ## Join this project
 All help is welcome. I'm glad to share this project with any interested contributors; newbie, experienced, young and old, english-speaking or english-trying. Contribute as you best can.
