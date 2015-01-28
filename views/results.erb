@@ -30,7 +30,7 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 <div class="notifier-buttton-small">
 <% if current_user? %>
 <form action='/trackers' method='POST'>
-	<input type='hidden' value="<%= session[:user_id] %>" name='user_id'><input type='hidden' value="<%= @keywords %>" name="keywords">
+	<input type='hidden' value="<%= session[:user_id] %>" name='user_id'><input type='hidden' value="<%= @items[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 	<input type='submit' value='Notify me!'>
 </form>
 <% else %>

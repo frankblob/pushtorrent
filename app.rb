@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'sequel'
 require 'sequel_secure_password'
-require 'bcrypt' #needed?
 require 'open-uri'
 require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
@@ -33,13 +32,18 @@ class User < Sequel::Model
 end
 
 class UserTracker < Sequel::Model
-	many_to_one :user
-	many_to_one :tracker
+many_to_one :user
+many_to_one :tracker
 end
 
 class Tracker < Sequel::Model
 		one_to_many :user_trackers
 		many_to_many :users, join_table: :user_trackers
+
+  def self.get(id=nil)
+  	Tracker[id: id]
+  end
+
 end
 
 helpers do
@@ -139,10 +143,14 @@ post '/trackers/?' do
 	if current_user?
 		# split logic depending on user type
 		user = User.get(params[:user_id])
-		#timestamp = grab from newest torrent listed ||= Time.now(utc)
-		Tracker[keywords: params[:keywords]].nil? ? tracker = Tracker.create(keywords: (params[:keywords], timestamp: params[:timestamp]) : Tracker[keywords: params[:keywords]]
-		user.add_user_tracker(tracker: tracker, timestamp: timestamp)
-			erb "Tracker added for #{params[:keywords]}.\n#{params}"
+		timestamp = params[:timestamp]
+		if Tracker[keywords: params[:keywords]].nil?
+			tracker = Tracker.create(keywords: params[:keywords], timestamp: params[:timestamp])
+		else
+			tracker = Tracker[keywords: params[:keywords]]
+		end
+		user.add_user_tracker(tracker: tracker, timestamp: params[:timestamp])
+		erb "Tracker added for #{params[:keywords]}.\n#{params}"
 	else
 		#ask for email and store as user type 0
 		erb "We need your email to notify for new torrents - or you can signup to get 5 trackers."
