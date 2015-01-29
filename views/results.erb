@@ -42,7 +42,7 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 <% end %>
 </div>
 </div>
-<ul><% @items.each do |li| %>
+<ul><% @results.each do |li| %>
 <li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %><br/>
 <br/>
 <% end %>

@@ -6,45 +6,10 @@ require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
 require "sinatra/reloader" if development?
 
-DB = Sequel.connect "sqlite://db/torwa-ar.db"
-Sequel::Model.plugin :timestamps, :update_on_create=>true
+require_relative 'db/init'
+require_relative 'models/init'
 
 use Rack::Session::Cookie, secret: "FiliBu7SterHankerCH11!Fen"
-
-class User < Sequel::Model
-	plugin :secure_password, include_validations: false
-	
-	one_to_many :user_trackers
-	many_to_many :trackers, join_table: :user_trackers
-
-	def authenticate(unencrypted_password)
-  	if BCrypt::Password.new(password_digest) == unencrypted_password
-  		return true
-  	else
-  		return false
-  	end
-  end
-
-  def self.get(id=nil)
-  	User[id: id]
-  end
-  
-end
-
-class UserTracker < Sequel::Model
-many_to_one :user
-many_to_one :tracker
-end
-
-class Tracker < Sequel::Model
-		one_to_many :user_trackers
-		many_to_many :users, join_table: :user_trackers
-
-  def self.get(id=nil)
-  	Tracker[id: id]
-  end
-
-end
 
 helpers do
 	def current_user?
@@ -58,13 +23,10 @@ end
 
 post '/' do
 	redirect back if params[:keywords].empty?
-	keywords = params[:keywords].tr('^-a-zA-z0-9_.', ' ').split(' ').join('+')
-	#develop (1-4) fail-safe options, if torrentz.eu is down/blocking/non-responsive
-	url = 'https://torrentz.eu/feed?q=' + keywords
-	@keywords = keywords.split('+').join(' ')
-	data = Nokogiri::XML(open(url))
-	@items = data.xpath('//channel/item').sort_by{|x| x.at_css('pubDate').text.to_time}.reverse
-	@items.empty? ? (erb :zerohits) : (erb :results)
+	search = KeywordSearch.new(params[:keywords])
+	@keywords = search.keywords
+	@results = search.results
+	@results.empty? ? (erb :zerohits) : (erb :results)
 end
 
 get '/signup/?' do #display signup form
