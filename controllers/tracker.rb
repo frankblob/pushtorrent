@@ -1,4 +1,20 @@
 post '/trackers/?' do
+
+	if current_user?
+		# split logic depending on user type [0,1 or 2]
+		user = User.get(session[:user_id])
+		tracker = Tracker.create_or_select(params[:keywords], params[:timestamp])
+		usertracker = user.add_user_tracker(tracker: tracker, timestamp: params[:timestamp])
+		erb "Tracker added for <strong>\"#{params[:keywords]}\" released after #{params[:timestamp]}.\n#{params}\n{session}"
+		#flash[:addtrackersucces] = "The tracker for '#{params[:keywords]}' has been added. We will notify you once new downloads are available."
+		#redirect back	
+	else
+		#ask for email and store as user type 0
+		erb "Now we just need your email, so we can notify you.\n\nRegistered users have five trackers. Sign up and get five trackers."
+	end
+
+end
+
 	# redirect_back or redirect "/trackers"?
 #if current_user does not exists:
 
@@ -22,20 +38,3 @@ post '/trackers/?' do
 #if current_user exists:
 #add and display added + highlighted tracker in user's tracker list
 #Tracker added for Equalizer 2014. {"user_id"=>"1", "keywords"=>"Equalizer 2014"} 
-	if current_user?
-		# split logic depending on user type
-		user = User.get(params[:user_id])
-		timestamp = params[:timestamp]
-		if Tracker[keywords: params[:keywords]].nil?
-			tracker = Tracker.create(keywords: params[:keywords], timestamp: params[:timestamp])
-		else
-			tracker = Tracker[keywords: params[:keywords]]
-		end
-		user.add_user_tracker(tracker: tracker, timestamp: params[:timestamp])
-		erb "Tracker added for #{params[:keywords]}.\n#{params}"
-	else
-		#ask for email and store as user type 0
-		erb "We need your email to notify for new torrents - or you can signup to get 5 trackers."
-	end
-
-end

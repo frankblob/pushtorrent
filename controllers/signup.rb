@@ -1,11 +1,12 @@
-get '/signup/?' do #display signup form
+get '/signup/?' do
 	erb :signup_form
 end
 
-post '/signup/?' do #create user
+post '/signup/?' do
 	user = User.new(params[:user])
 	if user.save
-		redirect to("/user/#{ user.id }") #|| redirect back or:home?
+		session[:user_id] = user.id
+		redirect '/user'
 	else 
 		redirect '/signup'
 	end
