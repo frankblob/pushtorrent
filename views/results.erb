@@ -9,13 +9,13 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 <div>
 <% if current_user? %>
 <form action='/trackers' method='POST'>
-	<input type='hidden' value="<%= session[:user_id] %>" name='user_id'><input type='hidden' value="<%= @keywords %>" name="keywords">
+	<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 	<input type='submit' value='Already have the torrents below? Get notified when new torrents are released and ready for download'>
 </form>
 <% else %>
 <form 
 <form action='/trackers' method='POST'>
-	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords">
+	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 	<input type='submit' value='Get notified'>
 </form>
 <small>No monkey business. Promise.</small>
@@ -30,19 +30,19 @@ Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
 <div class="notifier-buttton-small">
 <% if current_user? %>
 <form action='/trackers' method='POST'>
-	<input type='hidden' value="<%= session[:user_id] %>" name='user_id'><input type='hidden' value="<%= @items[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+	<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 	<input type='submit' value='Notify me!'>
 </form>
 <% else %>
 <form 
 <form action='/trackers' method='POST'>
-	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords">
+	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords"><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'>
 	<input type='submit' value='Notify me!'>
 </form>
 <% end %>
 </div>
 </div>
-<ul><% @items.each do |li| %>
+<ul><% @results.each do |li| %>
 <li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %><br/>
 <br/>
 <% end %>
