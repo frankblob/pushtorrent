@@ -5,6 +5,7 @@ class Tracker < Sequel::Model
     :join_table=>:user_trackers
 
   def validate
+    super
     validates_presence [ :keywords, :timestamp ]
   end
 

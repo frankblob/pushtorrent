@@ -7,8 +7,10 @@ class User < Sequel::Model
   plugin :secure_password, include_validations: false
 
   def validate
+    super
     validates_presence :email
     validates_min_length 5, :email #i@.to
+    validates_format /.+@.+\..+/i, :email, :message=>'does not seem to be a valid email'
   end
 
   def self.get(id=nil)

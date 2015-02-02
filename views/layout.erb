@@ -1,35 +1,40 @@
 <!DOCTYPE HTML>
 <html lang='en'>
 	<head>
-		<meta charset="utf8">
+		<meta charset="utf-8">
 		<title>Torrent Watch</title>
-<%#	
-	<link href="/style.css" rel="stylesheet" media="screen, projection"> 
-%>	
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 	</head>
 	<body>
-	<header>
-		<hgroup>
-			<div><h1><a href="/">Torrent Watch</a></h1>
-      <h3>Get torrent notifications in your inbox</h3>
-      </div>
-			<% if current_user? %>
-			<a href="/logout">Log out</a>
-			<% else %>
-			<div><a href="/signup">Sign up</a> | <a href="/login">Log in</a><% end %> | <a href="/forum">Forum</a>
-			</div>
-    </hgroup>
-  </header>
-
-  <div id="main">
+		<div class='container navbar navbar-default'>
+			<a class="navbar-brand" href="/">Torrent Watch</a>
+	    <ul class='nav navbar-nav navbar-right'>
+				<% if current_user? %>
+					<li><a href="/logout">Log out</a></li>
+				<% else %>
+					<li><a href="/signup">Sign up</a></li>
+					<li><a href="/login">Log in</a></li>
+				<% end %>
+				<li><a href="/forum">Forum</a></li>
+			</ul>
+		</div>
+		
 	<%= yield %>
+	
+	<div class='container'>
+		<center>
+    <p><small>Disclaimer: Torrent Watch does not condone using torrents for illegal purposes or downloading copyrighted material.<br/>
+    Torrent Watch: Actionable intel on the torrents you need.<br/>SSL: <a href="/">Torrent watch</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
+    </small></p>
+    </center>
 	</div>
-
-	<footer>
-    <p><small>Actionable intel on the torrents you need.<br/>
-    SSL: <a href="/">Torrent watch</a> | <a href="/about">About</a> | <a href="/contact">Contact</a><br/>
-    Disclaimer: Torrent Watch does neither support nor condone using torrents for illegal purposes or downloading copyrighted material. Think!</small></p>
-  </footer>
+<%#
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+%>
+</body>
+</html>

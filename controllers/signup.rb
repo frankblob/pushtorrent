@@ -3,11 +3,18 @@ get '/signup/?' do
 end
 
 post '/signup/?' do
-	user = User.new(params[:user])
-	if user.save
-		session[:user_id] = user.id
-		redirect '/user'
-	else 
+	
+	if /.+@.+\..+/i.match(params[:user][:email]).nil?
+		#flash[emailinvalid] = 'The email address you entered seems to be invalid. Please try again.'
 		redirect '/signup'
+	else
+		user = User.new(params[:user])
+		if user.save
+			session[:user_id] = user.id
+			redirect '/user'
+		else 
+			redirect '/signup'
+		end
 	end
+
 end
