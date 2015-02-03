@@ -16,6 +16,7 @@
 	    <ul class='nav navbar-nav navbar-right'>
 				<% if current_user? %>
 					<li><a href="/logout">Log out</a></li>
+					<li><a href="/user">Trackers</a></li>
 				<% else %>
 					<li><a href="/signup">Sign up</a></li>
 					<li><a href="/login">Log in</a></li>
@@ -23,7 +24,7 @@
 				<li><a href="/forum">Forum</a></li>
 			</ul>
 		</div>
-		
+
 	<%= yield %>
 	
 	<div class='container'>

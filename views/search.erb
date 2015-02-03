@@ -1,7 +1,9 @@
 <div class='container'>
 
 	<div class='row well'>
+
 		<div class='col-md-6'>
+			<%= flash[:message] if flash[:message] %>
 			<h2>Find your torrent</h2>
 				<form action='/' method='POST'>
 				
@@ -15,9 +17,28 @@
 		</div>
 
 		<div class="col-md-6">
-			<h3>Try the 11-second tutorial. Easy-peasy.</h3>
+			<h3>Try the 11-second tutorial. Easy-peasy.</h3><img width="350" height="197" src='YT_placeholder.png'>
+			<%#
 			<iframe width="350" height="197" src="//www.youtube.com/embed/ScMzIvxBSi4?rel=0&showinfo=0&modestbranding=1&theme=light&controls=0&color=white" frameborder="0" allowfullscreen></iframe>
+			%>
 		</div>
+	
+	</div>
+
+	<div class='row'>
+
+		<div class='col-md-4'>
+			<h3>Try it - so easy-peasy</h3><p>This amazing text goes here to elaborate on this interesting point that is now placeholder text only. But you get the point due to the placeholder. So it needs to go here.</p>
+		</div>
+
+		<div class='col-md-4'>
+			<h3>About Torrent Watch</h3><p>This amazing text goes here to elaborate on this interesting point that is now placeholder text only. But you get the point due to the placeholder. So it needs to go here.</p>
+		</div>
+
+		<div class='col-md-4'>
+			<h3>Pricing</h3><p>This amazing text goes here to elaborate on this interesting point that is now placeholder text only. But you get the point due to the placeholder. So it needs to go here.</p>
+		</div>
+
 	</div>
 
 </div>

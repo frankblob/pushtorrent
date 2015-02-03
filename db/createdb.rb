@@ -10,7 +10,7 @@ DB.create_table :users do
   column :email, :text, null: false
   column :password_digest, :text
   column :name, :text
-#  column :type, :integer
+#  column :type, :integer, null: false, default = 0
   column :created_at, :datetime
   column :updated_at, :datetime
   index :email, :unique=>true

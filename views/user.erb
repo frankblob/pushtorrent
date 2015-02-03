@@ -1,27 +1,41 @@
 <div class='container'>
-	<h2>Trackers:</h2>
-	<p>
-	Your notifications: sort by name | sort by created_date <br/>
-	<ol>
-<%# 
-do partial here - for sort order
-alphabetical: 
-<% @trackers.sort_by(&:keywords).each do |tracker| %>
-		<% @trackers.sort_by(&:updated_at).reverse.each do |tracker| %>
-		<li>
-		<strong><%= tracker[:keywords] %></strong> <a href="#">Edit</a> | <a href="#">Pause</a> | <a href="#">Remove</a>]<br />
-		Notification: immediately [x], daily, weekly, monthly [x].</li>
-		<% end %>
-	</ol>
-	<p>Active trackers: <%= @trackers.count %></p>
-	<p><a href="#">Notification archive</a> (22 listings)</p>
-	<h2>Profile info</h2>
-	Name: <%= @user.name ||= 'You have not entered your name yet!' %> [<a href="#">edit</a>]<br/>
-	Member since: <%= @user.created_at.to_date %><br/>
-	Email: <%= @user.email %> [<a href="#">change</a>]<br/>
-	Password: [<a href="#">change</a>]<br/>
-	Number of <a href="#">forum</a> posts: 1<br/>
-	Last forum post: <a href="#">*NOOB* Why is there no category selection possible?</a><br/>
-	<a href="#">Delete account</a> (confirmation required)<br/>
-	</p>
+
+	<div class='row'>
+
+		<div class='col-md-8'>
+			<%= flash[:message] if flash[:message] %>
+			<h2>Trackers:</h2>
+			<p>
+			Your notifications: sort by name | sort by created_date <br/>
+			<ol>
+			<%# 
+			do partial here - for sort order
+			alphabetical: 
+			<% @trackers.sort_by(&:keywords).each do |tracker| %>
+				<% @trackers.sort_by(&:updated_at).reverse.each do |tracker| %>
+				<li>
+				<strong><%= tracker[:keywords] %></strong> <a href="#">Edit</a> | <a href="#">Pause</a> | <form action='/trackers' method='POST'><input type='hidden' name='_method' value='DELETE' /><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Remove'></form> | <a href="/trackers/<%= tracker[:id] %>">Remove</a><br />
+				Notification: immediately [x], daily, weekly, monthly [x].</li>
+				<% end %>
+			</ol>
+			<p>Active trackers: <%= @trackers.count %></p>
+			<p><a href="#">Notification archive</a> (22 listings)</p>
+		</div>
+
+		<div class='col-md-4'>
+			<h2>Profile info</h2>
+			Name:<br/><%= @user.name ||= 'You have not entered your name yet!' %> [<a href="#">edit</a>]<br/>
+			Member since:<br/><%= @user.created_at.to_date %><br/>
+			Email:<br/><%= @user.email %> [<a href="#">change</a>]<br/>
+			[<a href="#">Change password</a>]<br/>
+			<a href="#">Delete account</a> (confirmation required)<br/><br/>
+
+			<h3>Forum activity</h3>
+			Number of <a href="#">forum</a> posts:<br/>1<br/>
+			Last forum post:<br/><a href="#">*NOOB* Why is there no category selection possible?</a><br/>
+			</p>
+		</div>
+	
+	</div>
+
 </div>
