@@ -1,49 +1,44 @@
-<h2>Get notified about new '<%= @keywords %>' torrents</h2>
-<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are ready for you to download.<br/></p>
-<table><tr>
-<td>
-Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
-<small>Since you already know about the torrents below,<br/>you will only be notified about new releases. Nifty!<br/><a href="#">View example</a></small> 
-</td>
-<td>
-<div>
-<% if current_user? %>
-<form action='/trackers' method='POST'>
-	<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
-	<input type='submit' value='Already have the torrents below? Get notified when new torrents are released and ready for download'>
-</form>
-<% else %>
-<form 
-<form action='/trackers' method='POST'>
-	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
-	<input type='submit' value='Get notified'>
-</form>
-<small>No monkey business. Promise.</small>
-<% end %>
+<div class='container'>
+	<h2>Get notified about new '<%= @keywords %>' torrents</h2>
+	<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are ready for you to download.<br/></p>
+	<table><tr>
+		<td>
+			Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
+			<small>Since you already know about the torrents below,<br/>you will only be notified about new releases. Nifty!<br/><a href="#">View example</a></small> 
+		</td>
+		<td>
+			<% if current_user? %>
+				<form action='/trackers' method='POST'>
+				<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+				<input type='submit' value='Already have the torrents below? Get notified when new torrents are released and ready for download'>
+				</form>
+			<% else %>
+				<form action='/trackers' method='POST'>
+				<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+				<input type='submit' value='Get notified'>
+				</form>
+				<small>No monkey business. Promise.</small>
+				<% end %>
+		</td>
+	</tr></table>
+	<h3>Search results for '<%= @keywords %>': #file_size | #seeders | #date_uploaded </h3>
+	<p>This is currently the newest release for <%= @keywords %>. 
+	<div class="notifier-button-small">
+		<% if current_user? %>
+			<form action='/trackers' method='POST'>
+			<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+			<input type='submit' value='Notify me!'>
+			</form>
+		<% else %>
+			<form action='/trackers' method='POST'>
+			<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords"><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'>
+			<input type='submit' value='Notify me!'>
+			</form>
+		<% end %>
+	</div>
+	<ul>
+	<% @results.each do |li| %>
+		<li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %></li><br/>
+	<% end %>
+	</ul>
 </div>
-</td>
-</tr>
-</table>
-<h3>Search results for '<%= @keywords %>': #file_size | #seeders | #date_uploaded </h3>
-<div id="newestrelease">
-<p>This is currently the newest release for <%= @keywords %>. 
-<div class="notifier-buttton-small">
-<% if current_user? %>
-<form action='/trackers' method='POST'>
-	<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
-	<input type='submit' value='Notify me!'>
-</form>
-<% else %>
-<form 
-<form action='/trackers' method='POST'>
-	<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords"><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'>
-	<input type='submit' value='Notify me!'>
-</form>
-<% end %>
-</div>
-</div>
-<ul><% @results.each do |li| %>
-<li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %><br/>
-<br/>
-<% end %>
-</ul>

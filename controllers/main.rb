@@ -20,5 +20,5 @@ end
 
 not_found do
 	status 404
-	erb :four04, layout: false
+	erb :four04
 end

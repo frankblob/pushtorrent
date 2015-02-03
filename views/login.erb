@@ -1,12 +1,13 @@
-<h2>Log in to Torrent Watch</h2>
-<div class="container">
-<h3>Existing user - welcome back!</h3>
-<p>Enter your email address and password.</p>
-<form action='/login' method='POST'>
-	<input type='text' placeholder='Email address' name='user[email]'>
-	<input type='text' placeholder='Password' name='user[password]'>
-	<input type='submit' value='Log in'>
-</form>
-<h3>New user</h3>
-<p>To log in, simply <a href="/signup">sign up</a> and <a href="/signup">continue immediately</a>!
+<div class='container'>
+	<%= flash[:message] if flash[:message] %>
+	<h2>Log in to Torrent Watch</h2>
+	<h3>Existing user - welcome back!</h3>
+	<p>Enter your email address and password.</p>
+	<form action='/login' method='POST'>
+		<input type='text' placeholder='Email address' name='user[email]'>
+		<input type='text' placeholder='Password' name='user[password]'>
+		<input type='submit' value='Log in'>
+	</form>
+	<h3>New user?</h3>
+	<p>To continue immediately, simply <a href="/signup">sign up</a>!
 </div>
