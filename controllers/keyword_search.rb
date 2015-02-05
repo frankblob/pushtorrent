@@ -1,8 +1,8 @@
 class KeywordSearch
 
-	#	URL = 'https://torrentz.eu/feed?q='
-	# URL = 'https://kickass.so/usearch/KEYWORDS/?rss=1'
-	URL = 'https://torrentz.eu/feedA?f='
+	#	seeder-sorted URL = 'https://torrentz.eu/feed?q='
+	# date-sorted URL = 'https://kickass.so/usearch/KEYWORDS/?rss=1'
+	URL = 'https://torrentz.eu/feedA?f=' #date-sorted
 
 	def initialize(searchstring)
 	#	keywords = searchstring.tr('^-a-zA-z0-9_.', ' ')
