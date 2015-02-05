@@ -3,7 +3,7 @@
 	<form action='/' method='POST'>
 				
 		<div class="form-group">
-			<input type='text' placeholder="<%= params[:keywords] ||= 'The Stranger HD 720p' %>" name='keywords'><input type='submit' value='Search'>
+			<input type='text' placeholder='The Stranger HD 720p' %>" name='keywords'><input type='submit' value='Search'>
 		</div>
 
 	</form>
@@ -18,12 +18,12 @@
 		<td>
 			<% if current_user? %>
 				<form action='/trackers' method='POST'>
-				<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+				<input type='hidden' value="<%= @timestamp %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 				<input type='submit' value='Already have the torrents below? Get notified when new torrents are released and ready for download'>
 				</form>
 			<% else %>
 				<form action='/trackers' method='POST'>
-				<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+				<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @timestamp %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 				<input type='submit' value='Get notified'>
 				</form>
 				<small>No monkey business. Promise.</small>
@@ -35,12 +35,12 @@
 	<div class="notifier-button-small">
 		<% if current_user? %>
 			<form action='/trackers' method='POST'>
-			<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
+			<input type='hidden' value="<%= @timestamp %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
 			<input type='submit' value='Notify me!'>
 			</form>
 		<% else %>
 			<form action='/trackers' method='POST'>
-			<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords"><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'>
+			<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords"><input type='hidden' value="<%= @timestamp %>" name='timestamp'>
 			<input type='submit' value='Notify me!'>
 			</form>
 		<% end %>
