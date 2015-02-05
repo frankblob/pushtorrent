@@ -1,10 +1,11 @@
 get '/' do
-	erb :search
+	erb :index
 end
 
 post '/' do
-	redirect back if params[:keywords].empty?
-	search = KeywordSearch.new(params[:keywords])
+	keywords = params[:keywords].tr('^-a-zA-z0-9_.', ' ').strip
+	redirect back if keywords.empty?
+	search = KeywordSearch.new(keywords)
 	@keywords = search.keywords
 	@results = search.results
 	@results.empty? ? (erb :zerohits) : (erb :results)

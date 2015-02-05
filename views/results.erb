@@ -1,4 +1,13 @@
 <div class='container'>
+	<h2>Find your torrent</h2>
+	<form action='/' method='POST'>
+				
+		<div class="form-group">
+			<input type='text' placeholder="<%= params[:keywords] ||= 'The Stranger HD 720p' %>" name='keywords'><input type='submit' value='Search'>
+		</div>
+
+	</form>
+	
 	<h2>Get notified about new '<%= @keywords %>' torrents</h2>
 	<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are ready for you to download.<br/></p>
 	<table><tr>
@@ -37,8 +46,15 @@
 		<% end %>
 	</div>
 	<ul>
-	<% @results.each do |li| %>
-		<li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %></li><br/>
+	<% @results[0..9].each do |li| %>
+		<li><a href="<%= li.at_css('link').text %>"><% if li.at_css('title').text.strip.length < 61 %> 
+		<%= li.at_css('title').text.strip %></a>
+		<% else %>
+		<%= li.at_css('title').text[0..60].split(" ")[0...-1].join(" ") %>
+		<% end %></a>
+		<br /><% tor = li.at_css('description').text.tr(",", '').split(/\W+/) %> 
+		Size: <%= tor[1] %> MB | Seeders: <%= tor[4] %> | Released: <%= li.at_css('pubDate').text.split[1..3].join(' ') %></li><br/>
 	<% end %>
 	</ul>
+
 </div>

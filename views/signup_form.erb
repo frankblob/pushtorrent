@@ -1,5 +1,7 @@
 <div class='container'>
-	<%= flash[:message] if flash[:message] %>
+	<% flash.each do |key, value| %>
+  	<div class="alert alert-<%= key %> "><%= value %></div>
+  <% end %>
 	<h2>Sign up - join!</h2>
 	<p>Sign up form with simple email and password.
 	<form action='/signup' method='POST'>

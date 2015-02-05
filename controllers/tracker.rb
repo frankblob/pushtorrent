@@ -5,15 +5,15 @@ post '/trackers/?' do
 		user = User.get(session[:user_id])
 		tracker = Tracker.create_or_select(params[:keywords], params[:timestamp])
 		if UserTracker[user.id, tracker.id] 
-			flash[:message] = "You already have this tracker. Try adding another tracker, instead."
+			flash[:info] = "You already have a tracker for '#{params[:keywords]}'. Try again."
 			redirect back
 		end
 		usertracker = user.add_user_tracker(tracker: tracker, timestamp: params[:timestamp])
 		if usertracker.save
-			flash[:message] = "The tracker for '#{params[:keywords]}' has been added. We will notify you once new downloads are available."
+			flash[:success] = "Tracker added! You will be notified when future '#{params[:keywords]}' torrents are released."
 			redirect '/user'
 		else
-			flash[:message] = "Unfortunately, the tracker was not added. Please try again."
+			flash[:warning] = "Unfortunately, the tracker was not added. Please try again."
 			redirect back
 		end				
 	else
@@ -35,7 +35,7 @@ delete '/trackers/?' do
 		user = User.get(session[:user_id])
 #		tracker = Tracker.get(params[:tracker_id])
 		removedtracker = user.remove_tracker(params[:tracker_id])
-		puts removedtracker.inspect
+		flash[:success] = "The '#{removedtracker.keywords}' tracker has been removed successfully."
 		if removedtracker.users.count == 0
 			removedtracker.destroy 
 		end
