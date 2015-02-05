@@ -8,8 +8,8 @@ post '/' do
 	search = KeywordSearch.new(keywords)
 	@keywords = search.keywords
 	@results = search.results
-	@timestamp = @results[0].at_css('pubDate').text.to_time
-	@results.empty? ? (erb :zerohits) : (erb :results)
+	@results.empty? ? (erb :zerohits) : (@timestamp = @results[0].at_css('pubDate').text.to_time)
+	erb :results
 end
 
 get '/about/?' do
