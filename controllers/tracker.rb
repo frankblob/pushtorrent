@@ -6,12 +6,12 @@ post '/trackers/?' do
 		tracker = Tracker.create_or_select(params[:keywords], params[:timestamp])
 		if UserTracker[user.id, tracker.id] 
 			flash[:info] = "You already have a tracker for '#{params[:keywords]}'. Try again."
-			redirect back
+			redirect back # Goes to '/' => bad UX. Ajax/JS on-page flash?
 		end
 		usertracker = user.add_user_tracker(tracker: tracker, timestamp: params[:timestamp])
 		if usertracker.save
 			flash[:success] = "Tracker added! You will be notified when future '#{params[:keywords]}' torrents are released."
-			redirect '/user'
+			redirect '/user' # Or Ajax/JS on-page flash?
 		else
 			flash[:warning] = "Unfortunately, the tracker was not added. Please try again."
 			redirect back
@@ -39,9 +39,9 @@ delete '/trackers/?' do
 		if removedtracker.users.count == 0
 			removedtracker.destroy 
 		end
-		redirect back
+		redirect back # '/user', which seems OK?
 	else
-		redirect back
+		redirect back # Logical/theoretical case only?
 	end
 end		
 	

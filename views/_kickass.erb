@@ -1,1 +1,1 @@
-Size: <%= (li.at_css('torrent:contentLength').text.to_f)/1048576).ceil %> MB | Seeders: <%= li.at_css('torrent:seeds').text %> | 
+Size: <%= (li.xpath('torrent:contentLength').text.to_f/1048576).ceil %> MB | Seeders: <%= li.xpath('torrent:seeds').text %> | 

@@ -38,7 +38,7 @@
 		<%= erb :"_displayresultstitle", :locals => {li: li} %>
 		<% if li.at_css('description') %>
 			<%= erb :_torrentz, :locals => {li: li} %>
-		<% elsif li.at_css('torrent:contentLength') %> 
+		<% elsif li.at_css('author') %> 
 			<%= erb :_kickass, :locals => {li: li} %>	
 		<% else %>
 			Size: N/A | Seeders: N/A | 

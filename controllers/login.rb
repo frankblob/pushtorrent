@@ -4,7 +4,7 @@ end
 
 post '/login/?' do
 	unless user = User.where(email: params[:user][:email]).first
-		flash[:info] = "Your login failed. Please try again."
+		flash[:warning] = "Your login failed. Please try again."
 		redirect '/login'
 	end
 #	flash[:info] = "Your login failed. Please try again."
@@ -16,7 +16,7 @@ post '/login/?' do
 		#env[return_path] (set as attempted path when unauthorized) ? redirect back : '/'
 	else
 		#session[:user_id] = nil
-		flash[:warning] = "Your password failed. Please try again."
+		flash[:warning] = "Your login failed. Please try again."
 		redirect '/login'
 	end
 end
