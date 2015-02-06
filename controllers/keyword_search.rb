@@ -1,23 +1,28 @@
 class KeywordSearch
 
-	#	seeder-sorted URL = 'https://torrentz.eu/feed?q='
-	# date-sorted URL = 'https://kickass.so/usearch/KEYWORDS/?rss=1'
 	URL = 'https://torrentz.eu/feedA?f=' #date-sorted
-
+	#	seeder-sorted = 'https://torrentz.eu/feed?q='
+	#URL2 = 'https://kickass.so/usearch/' # also edit results.erb to match kickass output format
+	
 	def initialize(searchstring)
-	#	keywords = searchstring.tr('^-a-zA-z0-9_.', ' ')
-		@keywords = searchstring
-		@url = URL + keywords.split(' ').join('+') #+ "/?rss=1" (for kickass.so)	
-	end
-
-	def keywords
-		@keywords
+		@url 	= URL  + searchstring.split(' ').join('+') #+ "/?rss=1" (for kickass.so)
+		#@url2 = URL2 + searchstring.split(' ').join('%20') + '/?rss=1'
+		@bkupkeywords = searchstring
 	end
 
 	def results
 		#develop (1-4) fail-safe options, if torrentz.eu is down/blocking/non-responsive
-		data = Nokogiri::XML(open(@url))
-		data.xpath('//channel/item')#[0..9]#.sort_by{|x| x.at_css('pubDate').text.to_time}.reverse
+		begin
+			Timeout::timeout(0.55) do
+				puts "Connecting to Torrentz.eu"
+				@data = Nokogiri::XML(open(@url))
+			end
+		rescue
+			url = 'https://kickass.so/usearch/' + @bkupkeywords.split(' ').join('%20') + '/?rss=1'
+			puts "Sourcing Kickass..."
+			@data = Nokogiri::XML(open(url))
+		end	
+		@data.xpath('//channel/item')[0..9]#.sort_by{|x| x.at_css('pubDate').text.to_time}.reverse
 	end
 
 end

@@ -6,11 +6,11 @@ post '/' do
 	keywords = params[:keywords].tr('^-a-zA-z0-9_.', ' ').strip
 	redirect back if keywords.empty?
 	search = KeywordSearch.new(keywords)
-	@keywords = search.keywords
 	@results = search.results
 	if @results.empty?
 		erb :zerohits
 	else
+		@keywords = keywords
 		@timestamp = @results[0].at_css('pubDate').text.to_time
 		erb :results
 	end
@@ -22,6 +22,12 @@ end
 
 get '/contact/?' do
 	erb :contact
+end
+
+error do
+	status 500
+	puts env['sinatra.error'].name
+	erb :four04
 end
 
 not_found do

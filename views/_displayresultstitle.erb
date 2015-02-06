@@ -1,0 +1,7 @@
+<li><a href="<%= li.at_css('link').text %>">
+		<% if li.at_css('title').text.strip.length < 61 %> 
+			<%= li.at_css('title').text.strip %></a>
+		<% else %>
+			<%= li.at_css('title').text[0..60].split(" ")[0...-1].join(" ") %>
+		<% end %></a>
+		<br/>
