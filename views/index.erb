@@ -1,10 +1,12 @@
 <div class='container'>
-
+<% flash.each do |key, value| %>
+  	<div class="alert alert-<%= key %> "><%= value %></div>
+  <% end %>
 	<div class='row well'>
 
 		<div class='col-md-6'>
-			<%= flash[:message] if flash[:message] %>
-			<h2>Find your torrent</h2>
+			
+			<h2>Get alerts for new torrents</h2>
 				<form action='/' method='POST'>
 				
 				<div class="form-group">
@@ -13,11 +15,11 @@
 
 				</form>
 		
-				<p class='lead'>Get notified when torrents you want are available for download.</p>
+				<p class='lead'>Get notified! We pop you an email when the torrents you seek are available for download.</p>
 		</div>
 
 		<div class="col-md-6">
-			<h3>Try the 11-second tutorial. Easy-peasy.</h3><img width="350" height="197" src='YT_placeholder.png'>
+			<h3>Easy and fast. 11-second tutorial.</h3><img width="350" height="197" src='YT_placeholder.png' data-video="https://www.youtube.com/embed/ScMzIvxBSi4?rel=0&showinfo=0&modestbranding=1&theme=light&controls=0&color=white&autoplay=1">
 			<%#
 			<iframe width="350" height="197" src="//www.youtube.com/embed/ScMzIvxBSi4?rel=0&showinfo=0&modestbranding=1&theme=light&controls=0&color=white" frameborder="0" allowfullscreen></iframe>
 			%>
@@ -28,7 +30,7 @@
 	<div class='row'>
 
 		<div class='col-md-4'>
-			<h3>Try it - so easy-peasy</h3><p>This amazing text goes here to elaborate on this interesting point that is now placeholder text only. But you get the point due to the placeholder. So it needs to go here.</p>
+			<h3>Try it - so easy-peasy</h3><p>Simply do a search and add this search to your account.</p>
 		</div>
 
 		<div class='col-md-4'>
@@ -42,3 +44,4 @@
 	</div>
 
 </div>
+<script src="youtubeload.js"></script>

@@ -1,4 +1,13 @@
 <div class='container'>
+	<h2>Find your torrent</h2>
+	<form action='/' method='POST'>
+				
+		<div class="form-group">
+			<input type='text' placeholder='The Stranger HD 720p' name='keywords'><input type='submit' value='Search'>
+		</div>
+
+	</form>
+	
 	<h2>Get notified about new '<%= @keywords %>' torrents</h2>
 	<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are ready for you to download.<br/></p>
 	<table><tr>
@@ -8,37 +17,34 @@
 		</td>
 		<td>
 			<% if current_user? %>
-				<form action='/trackers' method='POST'>
-				<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
-				<input type='submit' value='Already have the torrents below? Get notified when new torrents are released and ready for download'>
-				</form>
+				<%= erb :_addtrackercurrentuserform %>
 			<% else %>
-				<form action='/trackers' method='POST'>
-				<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
-				<input type='submit' value='Get notified'>
-				</form>
+				<%= erb :_addtrackernewuserform %>
 				<small>No monkey business. Promise.</small>
-				<% end %>
+			<% end %>
 		</td>
 	</tr></table>
 	<h3>Search results for '<%= @keywords %>': #file_size | #seeders | #date_uploaded </h3>
 	<p>This is currently the newest release for <%= @keywords %>. 
 	<div class="notifier-button-small">
 		<% if current_user? %>
-			<form action='/trackers' method='POST'>
-			<input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'><input type='hidden' value="<%= @keywords %>" name="keywords">
-			<input type='submit' value='Notify me!'>
-			</form>
+			<%= erb :_addtrackercurrentuserform %>
 		<% else %>
-			<form action='/trackers' method='POST'>
-			<input type='text' placeholder='email@example.com' name='email'><input type='hidden' value="<%= @keywords %>" name="keywords"><input type='hidden' value="<%= @results[0].at_css('pubDate').text.to_time %>" name='timestamp'>
-			<input type='submit' value='Notify me!'>
-			</form>
+			<%= erb :_addtrackernewuserform %>
 		<% end %>
 	</div>
 	<ul>
 	<% @results.each do |li| %>
-		<li><a href="<%= li.at_css('link').text %>"><%= li.at_css('title').text %></a><br />Size: <%= li.at_css('description').text[0,11].tr("^0-9,.", ' ').strip %> MB | Seeders: <%= li.at_css('description').text[16,14].tr("^0-9,.", ' ').strip %> | Released: <%= li.at_css('pubDate').text[5,11] %></li><br/>
+		<%= erb :_displayresultstitle, :locals => {li: li} %>
+		<% if li.at_css('description') %>
+			<%= erb :_torrentz, :locals => {li: li} %>
+		<% elsif li.at_css('author') %> 
+			<%= erb :_kickass, :locals => {li: li} %>	
+		<% else %>
+			Size: N/A | Seeders: N/A | 
+		<% end %>
+		Released: <%= li.at_css('pubDate').text.split[1..3].join(' ') %></li><br/>
 	<% end %>
 	</ul>
+
 </div>

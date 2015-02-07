@@ -1,0 +1,1 @@
+Size: <%= (li.xpath('torrent:contentLength').text.to_f/1048576).ceil %> MB | Seeders: <%= li.xpath('torrent:seeds').text %> | 
