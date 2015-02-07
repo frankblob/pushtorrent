@@ -12,7 +12,7 @@ Why not get an email when the torrents you seek are released?
 ### Current Torrent Watch development bugs, issues, features and goals
 
 ### UX to-dos
-1.Illogical redirect (false return) on "empty string" user input on results "page" -> redirected to front page. 
+1.Illogical redirect (false return) on "empty string" user input on results "page" -> redirected to front page.
   * Goal: Should stay on results "page", perhaps with flash error message.
 2. Illogical redirect (false return) when user attempts to add a duplicate tracker - > redirected to front page with flash message ("You already have this tracker...").
   * Goal: Should stay on results "page".
@@ -27,7 +27,7 @@ Why not get an email when the torrents you seek are released?
   * Search and update trackers; send email to relevant users
   * Dynamically generate emails when new releases are found (+'buffer' model for interval digests?)
   * Update timedate field for notification, to secure only new releases are searched
-6. Email sending. [Pony](ttps://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
+6. Email sending. [Pony](https://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
 7. Develop / install user forum
   * Reuse user DB from app, to avoid double sign up in forum
   * [Discourse](http://www.discourse.org/)?
