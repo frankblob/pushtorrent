@@ -9,7 +9,7 @@ class KeywordSearch
 
 	def results
 		begin
-			Timeout::timeout(0.15) do
+			Timeout::timeout(0.55) do
 				@data = Nokogiri::XML(open(@url))
 			end
 			print "Connect #1: torrentz\t"

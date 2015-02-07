@@ -35,7 +35,7 @@
 	</div>
 	<ul>
 	<% @results.each do |li| %>
-		<%= erb :"_displayresultstitle", :locals => {li: li} %>
+		<%= erb :_displayresultstitle, :locals => {li: li} %>
 		<% if li.at_css('description') %>
 			<%= erb :_torrentz, :locals => {li: li} %>
 		<% elsif li.at_css('author') %> 
