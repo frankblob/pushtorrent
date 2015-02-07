@@ -42,49 +42,107 @@
 <h3>
 <a id="description-of-the-web-apps-basic-functionality" class="anchor" href="#description-of-the-web-apps-basic-functionality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description of the web app's basic functionality</h3>
 
-<p>No need for users to manually do daily torrent searches for new 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar. Torrent Watch lets users search and opt-in to receive email notifications when new torrents are ready for download.  </p>
+<p>Torrent Watch lets users opt-in to receive email notifications when new torrents of choice are ready for download. No need to do daily manual searches for newly released torrents, e.g. 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar.   </p>
 
 <p>Why not get an email when the torrents you seek are released?</p>
 
-<h5>
-<a id="roadmap--to-do-list-for-future-functionality-and-features" class="anchor" href="#roadmap--to-do-list-for-future-functionality-and-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap / to-do list for future functionality and features</h5>
+<h2>
+<a id="to-do-list" class="anchor" href="#to-do-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>To-do list</h2>
+
+<h3>
+<a id="current-torrent-watch-development-bugs-issues-features-and-goals" class="anchor" href="#current-torrent-watch-development-bugs-issues-features-and-goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Current Torrent Watch development bugs, issues, features and goals</h3>
+
+<h3>
+<a id="ux-to-dos" class="anchor" href="#ux-to-dos" aria-hidden="true"><span class="octicon octicon-link"></span></a>UX to-dos</h3>
 
 <ol>
-<li>
-<del>Timedate sorted torrent list</del>, allowing users to sort on size and seeders.</li>
-<li>Dynamically generate static pages for notification search terms
+<li>Illogical redirect (false return) on "empty string" user input on results "page" -&gt; redirected to front page.
 
 <ul>
-<li>Include site map, with updated child nodes.</li>
+<li>Goal: Should stay on results "page", perhaps with flash error message</li>
 </ul>
 </li>
-<li>Add bootstrap and design the layout with clear CTA</li>
-<li>Add ORM for persistence layer (<del><a href="http://rom-rb.org">ROM</a></del>, <a href="http://sequel.jeremyevans.net/">Sequel</a> or <del><a href="http://lotusrb.org/">Lotus::Model</a></del> for user registration and user management of notifications
+<li>Illogical redirect (false return) when user attempts to add a duplicate tracker - &gt; redirected to front page with flash message ("You already have this tracker...").
 
 <ul>
-<li>Sign up (self-coded, <a href="https://rubygems.org/gems/warden">Warden</a> or <a href="https://github.com/intridea/omniauth-identity">Omniauth Identity</a>, <a href="https://github.com/shf/sinatra-can">CanCan</a>, etc. + email routine</li>
-<li>Log in</li>
-<li>Manage notifications</li>
+<li>Goal: Should stay on results "page"</li>
 </ul>
 </li>
-<li>Develop function for daily querying of notification search terms
+</ol>
+
+<h3>
+<a id="roadmap--future-functionality-and-features" class="anchor" href="#roadmap--future-functionality-and-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap / future functionality and features</h3>
+
+<ol>
+<li>Size and seeder sorted torrent search results.</li>
+<li>Dynamically generate static pages for DB stored trackers (keywords/search terms)
 
 <ul>
-<li>Dynamically generate emails when new releases are found</li>
+<li>Auto-updated site map, with updated child nodes.</li>
+</ul>
+</li>
+<li>Redesign the layout - with clear CTA</li>
+<li>Email <a href="https://github.com/mailcheck/mailcheck">check</a> &amp; routine</li>
+<li>Develop function for daily querying of trackers
+
+<ul>
+<li>Search and update trackers; send email to relevant users</li>
+<li>Dynamically generate emails when new releases are found (+'buffer' model for interval digests?)</li>
 <li>Update timedate field for notification, to secure only new releases are searched</li>
 </ul>
 </li>
+<li>Email sending. <a href="https://rubygems.org/gems/pony">Pony</a> gem, gmail smtp, <a href="http://sendy.co/">Sendy</a>, <a href="https://sendgrid.com/">sendgrid</a> or <a href="http://campayn.com/">campayn</a>?</li>
 <li>Develop / install user forum
 
 <ul>
 <li>Reuse user DB from app, to avoid double sign up in forum</li>
+<li>
+<a href="http://www.discourse.org/">Discourse</a>?</li>
 </ul>
 </li>
+<li>Enable adding a single tracker for unregistered users by entering email only + design view.</li>
 <li>Produce simple instructional video for home page</li>
 <li>Generate email template and create example email for viewing</li>
 <li>Tests.</li>
-<li>Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum</li>
-<li>Swap to PostgreSQL and deploy :)</li>
+<li>Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
+
+<ul>
+<li>Cron-job for 10 min interval update of the above, stored in file, to reduce DB querying?</li>
+</ul>
+</li>
+<li>Swap to PostgreSQL, add <a href="https://rubygems.org/gems/rein">numerical constraints</a> and <a href="https://rubygems.org/gems/foreigner">foreign key constraints</a> (for referential integrity) at the database level.</li>
+<li>Deploy :)</li>
+</ol>
+
+<h3>
+<a id="to-do-improvements" class="anchor" href="#to-do-improvements" aria-hidden="true"><span class="octicon octicon-link"></span></a>To-do improvements</h3>
+
+<ol>
+<li>Check to_time gem necessity and time normalization in app and DB</li>
+<li>Test Nokogiri replacements <a href="https://rubygems.org/gems/ox">Ox</a> and <a href="https://rubygems.org/gems/oga">Oga</a>
+</li>
+</ol>
+
+<h3>
+<a id="done" class="anchor" href="#done" aria-hidden="true"><span class="octicon octicon-link"></span></a>Done</h3>
+
+<ol>
+<li><del>Timedate sorted torrent list</del></li>
+<li>
+<del>Add bootstrap</del> </li>
+<li>
+<del>Add ORM for persistence layer (<a href="http://rom-rb.org">ROM</a>, <a href="http://sequel.jeremyevans.net/">Sequel</a>, <a href="http://github.com/janko-m/sinatra-activerecord">ActiveRecord</a> or <a href="http://lotusrb.org/">Lotus::Model</a></del>
+
+<ul>
+<li>
+<del>User registration/sign up (self-coded, <a href="https://rubygems.org/gems/warden">Warden</a> or <a href="https://github.com/intridea/omniauth-identity">Omniauth Identity</a>, <a href="https://github.com/shf/sinatra-can">CanCan</a>, etc.</del> </li>
+<li><del>Log in</del></li>
+<li><del>User management of trackers</del></li>
+</ul>
+</li>
+<li><del>Implement fall-back RSS feed</del></li>
+<li><del>Time-sorted feed from URL = 'https://torrentz.eu/feedA?f='</del></li>
+<li><del>[BUG] Torrent results listing of MB, seeders and date/time is error-prone and shows "XX Y"  (eg. "68 2") for some torrents with XX (68) seeders and Y (2) leechers.</del></li>
 </ol>
 
 <h5>
@@ -98,15 +156,21 @@
 <a id="ruby-questions-i-currently-wonder-about" class="anchor" href="#ruby-questions-i-currently-wonder-about" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ruby questions I currently wonder about...</h5>
 
 <ol>
-<li>Does instance variables use more memory than regular variables?</li>
-<li>Is it worth it to manually set an instance variable = nil, when no longer in use - or will Ruby GC do it for me?</li>
-<li>Will performance and memory utilization improve by replacing Nokogiri with <a href="https://rubygems.org/gems/curb">Curb</a>?</li>
+<li>When do instance variables 'die'? Trying to understand the memory usage of Ruby apps...</li>
+<li>Is it worth it to manually set an instance variable = nil, when no longer in use? Or will Ruby GC do it for me?</li>
+<li>Why is GC for symbols great? Should I use symbols more and thereby, as a consequence, optimize the memory usage of the app?</li>
+<li>Will performance and memory utilization improve by replacing Nokogiri with Ox, Oga or even <a href="https://rubygems.org/gems/curb">Curb</a>, in terms of installed gems alone? Not focucing on the performance of the individual gems (Nokogori vs Ox parsing, for instance), but the number, dependencies and size of installed gems.</li>
+<li>Is it necessary to implement something akin to <a href="https://github.com/orcasnet/activerecord-referential_integrity">referential integrity</a> for foreign keys in Sequel? Have done check and delete on "zero associations" in Sequel for now.</li>
 </ol>
 
 <h2>
 <a id="join-this-project" class="anchor" href="#join-this-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Join this project</h2>
 
 <p>All help is welcome. I'm glad to share this project with any interested contributors; newbie, experienced, young and old, english-speaking or english-trying. Contribute as you best can.</p>
+
+<p>For newbies as myself, that would perhaps be <a href="http://www.codenewbie.org/podcast/24-pull-requests">correcting typos or similar</a> and submitting a <a href="http://readwrite.com/2014/07/02/github-pull-request-etiquette">pull request</a> as detailed on the friendly, but easily over-stimulating pull request <a href="https://help.github.com/articles/using-pull-requests/">walk-through</a> on Github. </p>
+
+<p>Try it - and you have started collaborating! </p>
 
 <p>Okay, that's it, I guess. </p>
 
