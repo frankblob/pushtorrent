@@ -13,9 +13,9 @@ Why not get an email when the torrents you seek are released?
 
 ### UX to-dos
 1.Illogical redirect (false return) on "empty string" user input on results "page" -> redirected to front page.
-  * Goal: Should stay on results "page", perhaps with flash error message.
+  * Goal: Should stay on results "page", perhaps with flash error message
 2. Illogical redirect (false return) when user attempts to add a duplicate tracker - > redirected to front page with flash message ("You already have this tracker...").
-  * Goal: Should stay on results "page".
+  * Goal: Should stay on results "page"
 
 ### Roadmap / future functionality and features
 1. Size and seeder sorted torrent search results.
