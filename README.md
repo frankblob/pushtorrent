@@ -17,32 +17,34 @@ Why not get an email when the torrents you seek are released?
 2. Illogical redirect (false return) when user attempts to add a duplicate tracker - > redirected to front page with flash message ("You already have this tracker...").
   * Goal: Should stay on results "page"
 
-### Roadmap / future functionality and features
-1. Size and seeder sorted torrent search results.
-2. Dynamically generate static pages for DB stored trackers (keywords/search terms)
+### Roadmap for core functionality / future features
+1. Dynamically generate static pages for DB stored trackers (keywords/search terms)
   * Auto-updated site map, with updated child nodes.
-3. Redesign the layout - with clear CTA
-4. Email [check](https://github.com/mailcheck/mailcheck) & routine
-5. Develop function for daily querying of trackers
+2. Develop function for daily querying of trackers
   * Search and update trackers; send email to relevant users
   * Dynamically generate emails when new releases are found (+'buffer' model for interval digests?)
   * Update timedate field for notification, to secure only new releases are searched
-6. Email sending. [Pony](https://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
-7. Develop / install user forum
+3. Email sending. [Pony](https://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
+  * Generate email template
+  * Create example email for display to hesitant,potential users
+4. Develop / install user forum
   * Reuse user DB from app, to avoid double sign up in forum
   * [Discourse](http://www.discourse.org/)?
-8. Enable adding a single tracker for unregistered users by entering email only + design view.
-9. Produce simple instructional video for home page
-10. Generate email template and create example email for viewing
-11. Tests.
-12. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
+5. Implement single tracker cration for unregistered users by entering email only + design view/form.
+6. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
   * Cron-job for 10 min interval update of the above, stored in file, to reduce DB querying?
-13. Swap to PostgreSQL, add [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
-14. Deploy :)
+7. Learn and do testing.
+8. Swap to PostgreSQL, add [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
+9. Deploy :)
+10. Port Torrent Watch to [Volt](https://rubygems.org/gems/volt)?
 
 ### To-do improvements
 1. Check to_time gem necessity and time normalization in app and DB
 2. Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga)
+3. Redesign the layout - with clear CTA
+4. Size and seeder sorted torrent search results.
+5. Produce simple instructional video for home page
+6. Email [check](https://github.com/mailcheck/mailcheck) & routine
 
 ### Done
 1. ~~Timedate sorted torrent list~~
