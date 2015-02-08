@@ -8,10 +8,10 @@ Torrent Watch lets users opt-in to receive email notifications when new torrents
 
 Why not get an email when the torrents you seek are released?
 
-## To-do list
-Check the [to-do](https://github.com/frankblob/torrentwatch/blob/master/TODO.md) file. 
+#### To-do list?
+Sure. Check the [to-do](TODO.md) file. 
 
-##### About me
+#### About me
 The project described above seems more complex than actually doable for someone with my current coding skill set. My personal goal is to hack away at this steep challenge and learn as much as possible.  
 
 In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at Ruby, object-oriented programming and GitHub. Torrent Watch is my first web application attempt besides auto-deploying a [RailsBricks3](http://railsbricks.net) app, since I could not get anything self-coded to work on Heroku :)
