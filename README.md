@@ -26,7 +26,7 @@ Why not get an email when the torrents you seek are released?
   * Update timedate field for notification, to secure only new releases are searched
 3. Email sending. [Pony](https://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
   * Generate email template
-  * Create example email for display to hesitant,potential users
+  * Create example email for hesitant visitors/potential users
 4. Develop / install user forum
   * Reuse user DB from app, to avoid double sign up in forum
   * [Discourse](http://www.discourse.org/)?
