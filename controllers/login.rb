@@ -3,12 +3,12 @@ get '/login/?' do
 end
 
 post '/login/?' do
-	unless user = User.where(email: params[:user][:email]).first
+
+	unless user = User[email: params[:user][:email]]
 		flash[:warning] = "Your login failed. Please try again."
 		redirect '/login'
 	end
-#	flash[:info] = "Your login failed. Please try again."
-#	redirect '/login' unless user = User.where(email: params[:user][:email]).first
+
 	if BCrypt::Password.new(user.password_digest) == params[:user][:password]
 		session[:user_id] = user.id
 		flash[:success] = "You are now logged in. Glad to have you back!"
@@ -19,6 +19,7 @@ post '/login/?' do
 		flash[:warning] = "Your login failed. Please try again."
 		redirect '/login'
 	end
+
 end
 
 get '/logout/?' do
