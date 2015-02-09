@@ -1,11 +1,11 @@
-## To-do list
+## To-do list for MVP -> Beta -> RC -> 1.0 
 ### Current Torrent Watch development bugs, issues, features and goals
 
 ### UX to-dos
-1. Illogical redirect (false return) on "empty string" user input on results "page" -> redirected to front page.
-  * Goal: Should stay on results "page", perhaps with flash error message
+1. Illogical redirect (false return) on "empty string" user input on results view -> redirected to front page.
+  * Goal: Should stay on results "page", perhaps with flash error message (Ajax?)
 2. Illogical redirect (false return) when user attempts to add a duplicate tracker - > redirected to front page with flash message ("You already have this tracker...").
-  * Goal: Should stay on results "page"
+  * Goal: Should stay on results "page" (Ajax?)
 
 ### Roadmap for core functionality / future features
 1. Dynamically generate static pages for DB stored trackers (keywords/search terms)
@@ -26,7 +26,6 @@
 7. Learn and do testing.
 8. Swap to PostgreSQL, add [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
 9. Deploy :)
-10. Port Torrent Watch to [Volt](https://rubygems.org/gems/volt)?
 
 ### To-do improvements
 1. Check to_time gem necessity and time normalization in app and DB
@@ -35,6 +34,9 @@
 4. Size and seeder sorted torrent search results.
 5. Produce simple instructional video for home page
 6. Email [check](https://github.com/mailcheck/mailcheck) & routine
+7. Ajax UX improvements
+8. Auto-reset of password via pershable token
+9. Remember me-functionality
 
 ### Done
 1. ~~Timedate sorted torrent list~~
@@ -46,3 +48,7 @@
 4. ~~Implement fall-back RSS feed~~
 5. ~~Time-sorted feed from URL = 'ht<span>tps://</span>torrentz.eu/feedA?f='~~
 6. ~~[BUG] Torrent results listing of MB, seeders and date/time is error-prone and shows "XX Y"  (eg. "68 2") for some torrents with XX (68) seeders and Y (2) leechers.~~
+7. ~~[BUG] NoMethodError on 'exists?' for nil:NilClass during signup.~~
+
+###Ideas for 2.0
+1. Port Torrent Watch to [Volt](https://rubygems.org/gems/volt)?
