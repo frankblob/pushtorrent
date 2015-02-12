@@ -14,7 +14,8 @@ post '/signup/?' do
 		user = User.new(params[:user])
 		if user.save
 			session[:user_id] = user.id
-			flash[:success] = 'You have signed up and everything is ready to go. Enjoy!'		
+			flash[:success] = 'You have signed up and everything is ready to go. Enjoy!'
+			signup_confirmation(user.email)
 			redirect '/user'
 		else 
 			flash[:warning] = 'Your sign up did not succeed. Please try again.'

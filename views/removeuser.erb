@@ -1,0 +1,6 @@
+<%# show youtube@autoplay goodbye-wave %>
+<form action='/user/#{session[user_id]}/remove/?' method='POST'>
+	Type your registered email address to confirm account deletion: 
+	<input type='text' placeholder='Email address' name='emailconfirm'>
+	<input type='submit' value='Delete account'>
+</form>

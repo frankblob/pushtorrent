@@ -37,6 +37,7 @@
 7. Ajax UX improvements
 8. Auto-reset of password via pershable token
 9. Remember me-functionality
+10. Develop user deletion procedure, including associations handling
 
 ### Done
 1. ~~Timedate sorted torrent list~~
