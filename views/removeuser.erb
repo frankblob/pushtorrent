@@ -1,6 +1,10 @@
+<div class='container'>
 <%# show youtube@autoplay goodbye-wave %>
-<form action='/user/#{session[user_id]}/remove/?' method='POST'>
-	Type your registered email address to confirm account deletion: 
+I am really sorry to see you go. But it is ok, of course. Please consider giving <a href="/contact">constructive feedback or suggestions</a>. Thanks.<br/><br/>
+Let's get to it. Simply fill out the form and hit 'delete'.<br/><br>
+<form action='/user/<%= session[:user_id] %>/remove/?' method='POST'>
+	Type your registered email address to confirm account deletion:<br/> 
 	<input type='text' placeholder='Email address' name='emailconfirm'>
 	<input type='submit' value='Delete account'>
 </form>
+</div>

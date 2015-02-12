@@ -9,12 +9,12 @@ class KeywordSearch
 
 	def results
 		begin
-			Timeout::timeout(0.55) do
+			Timeout::timeout(1.25) do
 				@data = Nokogiri::XML(open(@url))
 			end
 			print "Connect #1: torrentz\t"
 		rescue
-			url = 'https://kickass.so/usearch/' + @url[/(?<==).*/] + '/?rss=1'
+			url = 'https://kickass.to/usearch/' + @url[/(?<==).*/] + '/?rss=1'
 			puts "#2 switch: kickass"
 			@data = Nokogiri::XML(open(url))
 		end	
