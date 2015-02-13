@@ -35,7 +35,7 @@
 5. Produce simple instructional video for home page
 6. Email [check](https://github.com/mailcheck/mailcheck) & routine
 7. Ajax UX improvements
-8. Auto-reset of password via pershable token
+8. Auto-reset of password via perishable token
 9. Remember me-functionality
 10. Develop user deletion procedure, including associations handling
 

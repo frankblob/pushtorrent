@@ -24,6 +24,7 @@ get '/contact/?' do
 	erb :contact
 end
 
+# does this work/handle anything?
 error do
 	status 500
 	puts env['sinatra.error'].name
