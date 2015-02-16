@@ -8,13 +8,13 @@
   * Goal: Should stay on results "page" (Ajax?)
 
 ### Roadmap for core functionality / future features
-1. Dynamically generate static pages for DB stored trackers (keywords/search terms)
+1. Develop module to dynamically generate static pages for DB stored trackers (keywords/search terms)
   * Auto-updated site map, with updated child nodes.
-2. Develop function for daily querying of trackers
+2. Develop module for daily querying of trackers
   * Search and update trackers; send email to relevant users
   * Dynamically generate emails when new releases are found (+'buffer' model for interval digests?)
   * Update timedate field for notification, to secure only new releases are searched
-3. Email sending. [Pony](https://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
+3. Develop module for email sending. [Pony](https://rubygems.org/gems/pony) gem, gmail smtp, [Sendy](http://sendy.co/), [sendgrid](https://sendgrid.com/) or [campayn](http://campayn.com/)?
   * Generate email template
   * Create example email for hesitant visitors/potential users
 4. Develop / install user forum
@@ -29,14 +29,17 @@
 
 ### To-do improvements
 1. Check to_time gem necessity and time normalization in app and DB
-2. Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga)
+2. Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga) [Partially done]
 3. Redesign the layout - with clear CTA
 4. Size and seeder sorted torrent search results.
 5. Produce simple instructional video for home page
 6. Email [check](https://github.com/mailcheck/mailcheck) & routine
 7. Ajax UX improvements
-8. Auto-reset of password via pershable token
+8. Auto-reset of password via perishable token
 9. Remember me-functionality
+10. Merge/integrate app with separately developed updater, mailer and static page generation modules
+  * Integrate as modular Sinatra app?
+  * Implemnet as SOA?
 
 ### Done
 1. ~~Timedate sorted torrent list~~
@@ -49,6 +52,7 @@
 5. ~~Time-sorted feed from URL = 'ht<span>tps://</span>torrentz.eu/feedA?f='~~
 6. ~~[BUG] Torrent results listing of MB, seeders and date/time is error-prone and shows "XX Y"  (eg. "68 2") for some torrents with XX (68) seeders and Y (2) leechers.~~
 7. ~~[BUG] NoMethodError on 'exists?' for nil:NilClass during signup.~~
+8. ~~Develop user deletion procedure, including associations handling~~
 
 ###Ideas for 2.0
 1. Port Torrent Watch to [Volt](https://rubygems.org/gems/volt)?

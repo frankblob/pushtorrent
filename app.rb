@@ -5,8 +5,11 @@ require 'open-uri'
 require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
 require 'sinatra/flash'
+require "sinatra/config_file"
 require 'sinatra/reloader' if development?
 require 'awesome_print'  if development?
+
+config_file 'config.yml'
 
 require_relative 'db/init'
 require_relative 'models/init'
