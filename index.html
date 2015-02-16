@@ -46,107 +46,13 @@
 
 <p>Why not get an email when the torrents you seek are released?</p>
 
-<h2>
-<a id="to-do-list" class="anchor" href="#to-do-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>To-do list</h2>
+<h4>
+<a id="to-do-list" class="anchor" href="#to-do-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>To-do list?</h4>
 
-<h3>
-<a id="current-torrent-watch-development-bugs-issues-features-and-goals" class="anchor" href="#current-torrent-watch-development-bugs-issues-features-and-goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Current Torrent Watch development bugs, issues, features and goals</h3>
+<p>Sure. Check the <a href="TODO.md">to-do</a> file. </p>
 
-<h3>
-<a id="ux-to-dos" class="anchor" href="#ux-to-dos" aria-hidden="true"><span class="octicon octicon-link"></span></a>UX to-dos</h3>
-
-<ol>
-<li>Illogical redirect (false return) on "empty string" user input on results "page" -&gt; redirected to front page.
-
-<ul>
-<li>Goal: Should stay on results "page", perhaps with flash error message</li>
-</ul>
-</li>
-<li>Illogical redirect (false return) when user attempts to add a duplicate tracker - &gt; redirected to front page with flash message ("You already have this tracker...").
-
-<ul>
-<li>Goal: Should stay on results "page"</li>
-</ul>
-</li>
-</ol>
-
-<h3>
-<a id="roadmap--future-functionality-and-features" class="anchor" href="#roadmap--future-functionality-and-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap / future functionality and features</h3>
-
-<ol>
-<li>Size and seeder sorted torrent search results.</li>
-<li>Dynamically generate static pages for DB stored trackers (keywords/search terms)
-
-<ul>
-<li>Auto-updated site map, with updated child nodes.</li>
-</ul>
-</li>
-<li>Redesign the layout - with clear CTA</li>
-<li>Email <a href="https://github.com/mailcheck/mailcheck">check</a> &amp; routine</li>
-<li>Develop function for daily querying of trackers
-
-<ul>
-<li>Search and update trackers; send email to relevant users</li>
-<li>Dynamically generate emails when new releases are found (+'buffer' model for interval digests?)</li>
-<li>Update timedate field for notification, to secure only new releases are searched</li>
-</ul>
-</li>
-<li>Email sending. <a href="https://rubygems.org/gems/pony">Pony</a> gem, gmail smtp, <a href="http://sendy.co/">Sendy</a>, <a href="https://sendgrid.com/">sendgrid</a> or <a href="http://campayn.com/">campayn</a>?</li>
-<li>Develop / install user forum
-
-<ul>
-<li>Reuse user DB from app, to avoid double sign up in forum</li>
-<li>
-<a href="http://www.discourse.org/">Discourse</a>?</li>
-</ul>
-</li>
-<li>Enable adding a single tracker for unregistered users by entering email only + design view.</li>
-<li>Produce simple instructional video for home page</li>
-<li>Generate email template and create example email for viewing</li>
-<li>Tests.</li>
-<li>Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
-
-<ul>
-<li>Cron-job for 10 min interval update of the above, stored in file, to reduce DB querying?</li>
-</ul>
-</li>
-<li>Swap to PostgreSQL, add <a href="https://rubygems.org/gems/rein">numerical constraints</a> and <a href="https://rubygems.org/gems/foreigner">foreign key constraints</a> (for referential integrity) at the database level.</li>
-<li>Deploy :)</li>
-</ol>
-
-<h3>
-<a id="to-do-improvements" class="anchor" href="#to-do-improvements" aria-hidden="true"><span class="octicon octicon-link"></span></a>To-do improvements</h3>
-
-<ol>
-<li>Check to_time gem necessity and time normalization in app and DB</li>
-<li>Test Nokogiri replacements <a href="https://rubygems.org/gems/ox">Ox</a> and <a href="https://rubygems.org/gems/oga">Oga</a>
-</li>
-</ol>
-
-<h3>
-<a id="done" class="anchor" href="#done" aria-hidden="true"><span class="octicon octicon-link"></span></a>Done</h3>
-
-<ol>
-<li><del>Timedate sorted torrent list</del></li>
-<li>
-<del>Add bootstrap</del> </li>
-<li>
-<del>Add ORM for persistence layer (<a href="http://rom-rb.org">ROM</a>, <a href="http://sequel.jeremyevans.net/">Sequel</a>, <a href="http://github.com/janko-m/sinatra-activerecord">ActiveRecord</a> or <a href="http://lotusrb.org/">Lotus::Model</a></del>
-
-<ul>
-<li>
-<del>User registration/sign up (self-coded, <a href="https://rubygems.org/gems/warden">Warden</a> or <a href="https://github.com/intridea/omniauth-identity">Omniauth Identity</a>, <a href="https://github.com/shf/sinatra-can">CanCan</a>, etc.</del> </li>
-<li><del>Log in</del></li>
-<li><del>User management of trackers</del></li>
-</ul>
-</li>
-<li><del>Implement fall-back RSS feed</del></li>
-<li><del>Time-sorted feed from URL = 'https://torrentz.eu/feedA?f='</del></li>
-<li><del>[BUG] Torrent results listing of MB, seeders and date/time is error-prone and shows "XX Y"  (eg. "68 2") for some torrents with XX (68) seeders and Y (2) leechers.</del></li>
-</ol>
-
-<h5>
-<a id="about-me" class="anchor" href="#about-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>About me</h5>
+<h4>
+<a id="about-me" class="anchor" href="#about-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>About me</h4>
 
 <p>The project described above seems more complex than actually doable for someone with my current coding skill set. My personal goal is to hack away at this steep challenge and learn as much as possible.  </p>
 
