@@ -21,15 +21,16 @@
   * Reuse user DB from app, to avoid double sign up in forum
   * [Discourse](http://www.discourse.org/)?
 5. Implement single tracker cration for unregistered users by entering email only + design view/form.
-6. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
+6. Finalize remove user functionality via email confirmation.
+7. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
   * Cron-job for 10 min interval update of the above, stored in file, to reduce DB querying?
-7. Learn and do testing.
-8. Swap to PostgreSQL, add [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
-9. Deploy :)
+8. Learn and do testing.
+9. Swap to PostgreSQL, add [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
+10. Deploy :)
 
 ### To-do improvements
 1. Check to_time gem necessity and time normalization in app and DB
-2. Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga) [Partially done]
+2. Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga) [Partially done - updater module uses Oga]
 3. Redesign the layout - with clear CTA
 4. Size and seeder sorted torrent search results.
 5. Produce simple instructional video for home page
@@ -39,7 +40,7 @@
 9. Remember me-functionality
 10. Merge/integrate app with separately developed updater, mailer and static page generation modules
   * Integrate as modular Sinatra app?
-  * Implemnet as SOA?
+  * Implement as SOA?
 
 ### Done
 1. ~~Timedate sorted torrent list~~
