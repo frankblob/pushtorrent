@@ -1,3 +1,4 @@
+# consider moving to modular or separate service.
 require 'net/smtp'
 
 def signup_confirmation(to)
