@@ -11,7 +11,7 @@ end
 def mailcomposer(to, subject, body)
 	from = settings.mailfrom
 	to = to
-	message = "From: Torrent Watch - NO REPLY/AUTO-EMAIL <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"
+	message = "From: #{settings.sitename} - NO REPLY/AUTO-EMAIL <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"
 end
 
 def mailit!(to, message)
@@ -20,6 +20,15 @@ def mailit!(to, message)
 	smtp.start('gmail.com', settings.mailfrom, settings.mailpass, :plain) do |smtp|
 		smtp.send_message(message, settings.mailfrom, to)
 	end
+end
+
+def update_admin(body)
+	from = settings.mailfrom
+	to = settings.adminmail
+	subject = "Daily tracker update statistics"
+	body = "#{body.length} new torrent releases for #{body.join(', ')} were found during the last 24 hours."
+	message = "From: #{settings.sitename} <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"
+	mailit!(to, message)
 end
 
 =begin
