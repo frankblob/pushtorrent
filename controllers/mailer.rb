@@ -1,4 +1,3 @@
-# consider moving to modular or separate service.
 require 'net/smtp'
 
 def signup_confirmation(to)
@@ -31,17 +30,10 @@ def update_admin(body)
 	mailit!(to, message)
 end
 
-=begin
-def tracker_notification(to, torrents)
-	subject = "Yay! New torrents available for download."
-	body = "It is a pleasure to inform you that Welcome to #{settings.sitename} - I'm glad to have you on board!\n\nYou have successfully signed up and eveything is ready to go.\n\nAnd that's very cool.\n\nGo to #{settings.siteurl} and set up your first torrent trackers. See you soon.\n\n\nRegards,\n\nFrank, the friendly mail robot\n#{settings.sitename}\n\n**********************************\nDo not reply to this email adress. It is not monitored. This email was automatically generated. Instead, please go to #{settings.siteurl}/contact\n**********************************"
-	message = mailcomposer(to, subject, body)
-	# something
-	#{"Tracker keywords" => {"title1": releasetime1, "title2": releasetime2}}
-	torrent.each do |k, v|
-		puts "New '" + k + "' torrents:"
-		v.each {|k,v| puts k.to_s + " (released " + v.to_s + ")"}
-		puts ""
-	end
+def new_torrents(to, torrents)
+from = settings.mailfrom
+	subject = "Yay! New #{torrents.length < 2 ? 'torrent is' : 'torrents are'} released. Go download!"
+	body = "New #{torrents.length < 2 ? 'torrent' : 'torrents'} released for:\n\n#{torrents.join("\n")}\n\nWe will push new torrent releases to you, if you leave everything as is. Easy-peasy.\n\nEnjoy downloading,\n\nFrank, the friendly mailer robot at #{settings.sitename}\n\n************************************\nTo cancel or adjust future torrent notifications, please go to #{settings.siteurl} and login.\n"
+	message = "From: #{settings.sitename} <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"
+	mailit!(to, message)
 end
-=end
