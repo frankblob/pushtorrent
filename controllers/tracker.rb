@@ -17,14 +17,9 @@ post '/trackers/?' do
 			redirect back
 		end				
 	else
-		#offer login or ask new user for email and create user type 0
-		erb "Now we just need your email, so we can notify you. (Set monthly [x], weekly or daily ) \n\nRegistered users have five trackers. Sign up and get five trackers."
-		#if email does exist, with user_type = 0
-			#display current tracker, offer to replace and to signup/register:
-			#Sign up and get five trackers.
-		#else (when email does exist, with user_type = 1 || 2
-			#display login page
-		#end
+			flash[:info] = "You need to log in before you can add a tracker for '#{params[:keywords]}'."
+			# add session storage of keywords and tpyed in email, and ask for password to complete sign up/tracker add?	
+			redirect '/login'
 	end
 
 end
