@@ -10,6 +10,9 @@ post '/signup/?' do
 	elsif User[email: params[:user][:email]].present?
 		flash[:info] = "The email address #{params[:user][:email]} already exists. Please log in with your previously registered password."
 		redirect '/login'
+	elsif params[:user][:password].empty?
+		flash[:danger] = 'You need to enter a password. Please try again.'
+		redirect '/signup'
 	else
 		user = User.new(params[:user])
 		if user.save
