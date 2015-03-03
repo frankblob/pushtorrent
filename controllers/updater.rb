@@ -1,3 +1,12 @@
+get '/twenty4hrupdater' do
+	updater = TrackerUpdater.new
+	mailcontent = updater.updated_trackers.map do |t|
+									Tracker[t].keywords
+								end
+	update_admin(mailcontent)
+	updater = nil
+end
+
 class TrackerUpdater
 Tracker.plugin :touch
 attr_reader :updatepool, :updated_trackers

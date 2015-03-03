@@ -39,7 +39,7 @@ def update_admin_userupdates(subject, body)
 end
 
 def new_torrents(to, torrents)
-from = settings.mailfrom
+	from = settings.mailfrom
 	subject = "Yay! New #{torrents.length < 2 ? 'torrent is' : 'torrents are'} released. Go download!"
 	body = "New #{torrents.length < 2 ? 'torrent' : 'torrents'} released for:\n\n#{torrents.join("\n")}\n\nWe will push new torrent releases to you, if you leave everything as is. Easy-peasy.\n\nEnjoy downloading!\n\nFrank, the friendly mailer robot at #{settings.sitename}\n\n\n\n************************************\nTo cancel or adjust future torrent notifications, please go to #{settings.siteurl} and login.\n"
 	message = "From: #{settings.sitename} <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"

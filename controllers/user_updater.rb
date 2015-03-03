@@ -1,3 +1,8 @@
+get '/userupdate/?' do
+	run_update = UserUpdater.new
+	run_update = nil
+end
+
 class UserUpdater
 
 	def initialize
@@ -26,24 +31,23 @@ class UserUpdater
 	end
 
 	def update_users
-			@output.each do |user, usertrackers|
-				@thisuser_update = []
-				usertrackers.each do |usertracker|
-					@thisuser_update << Tracker[usertracker.tracker_id].keywords
-				end
-				new_torrents(User[user].email, @thisuser_update)
-				usertrackers.each do |usertracker|
-					usertracker.timestamp << Tracker[usertracker.tracker_id].timestamp
-				end
+		@output.each do |user, usertrackers|
+			@thisuser_update = []
+			usertrackers.each do |usertracker|
+				@thisuser_update << Tracker[usertracker.tracker_id].keywords
+			end
+			new_torrents(User[user].email, @thisuser_update)
+			usertrackers.each do |usertracker|
+				usertracker.timestamp = Tracker[usertracker.tracker_id].timestamp
 			end
 		end
 	end
-
+	
 	def admin_stats
-		"#{@updated.count} #{@updated.count < 2 ? "usertracker " : "usertrackers "} #{@updated.count < 2 ? "was " : "were "} successfully updated today for #{output.count} different users."
+		"#{@updated.count} #{@updated.count < 2 ? "usertracker " : "usertrackers "} #{@updated.count < 2 ? "was " : "were "} successfully updated today for #{@output.count} different users."
 	end
 
-end #class end
+end 
 
 =begin
 
