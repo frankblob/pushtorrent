@@ -2,7 +2,7 @@ require 'net/smtp'
 
 def signup_confirmation(to)
 	subject = "Welcome to #{settings.sitename} - signup complete!"
-	body = "Welcome to #{settings.sitename} - I'm glad to have you on board!\n\nYou have successfully signed up and everything is ready to go.\n\nAnd that's very cool.\n\nGo to #{settings.siteurl} and set up your first torrent trackers. See you soon.\n\n\nRegards,\n\nFrank, the friendly mail robot at #{settings.sitename}\n\n**********************************\nThis email was automatically generated. Do not reply to this email adress. Instead, if you have questions, feedback or suggestions, please go to #{settings.siteurl}/contact\n**********************************"
+	body = "Welcome to #{settings.sitename} - I'm glad to have you on board!\n\nYou have successfully signed up and everything is ready to go.\n\nAnd that's very cool.\n\nGo to #{settings.siteurl} and set up your first pushtorrent.\n\nSee you soon.\n\n\nRegards,\n\nFrank, the friendly mail robot at #{settings.sitename}\n\n**********************************\nThis email was automatically generated. Do not reply to this email adress. Instead, if you have questions, feedback or suggestions, please go to #{settings.siteurl}/contact\n**********************************"
 	message = mailcomposer(to, subject, body)
 	mailit!(to, message)
 end
@@ -25,7 +25,7 @@ def update_admin(body)
 	from = settings.mailfrom
 	to = settings.adminmail
 	subject = "Daily tracker update statistics"
-	body = "#{body.length} new torrent #{body.length == 1 ? 'release' : 'releases'} for  #{body.length > 0 ? body.join(', ') : 'any trackers '} found during the last 24 hours."
+	body = "#{body.length} new torrent #{body.length == 1 ? 'release' : 'releases'} for #{body.length > 0 ? body.join(', ') : 'any trackers '} found during the last 24 hours."
 	message = "From: #{settings.sitename} <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"
 	mailit!(to, message)
 end
