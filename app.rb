@@ -5,7 +5,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'active_support/core_ext/string/conversions'
 require 'sinatra/flash'
-require "sinatra/config_file" # necessary? -> config do...
+require "sinatra/config_file"
 require 'sinatra/reloader' if development?
 require 'awesome_print'  if development?
 
