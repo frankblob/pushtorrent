@@ -25,15 +25,6 @@ get '/contact/?' do
 	erb :contact
 end
 
-get '/twenty4hrupdater' do
-	updater = TrackerUpdater.new
-	mailcontent = updater.updated_trackers.map do |t|
-									Tracker[t].keywords
-								end
-	update_admin(mailcontent)
-	updater = nil
-end
-
 # does this work/handle anything?
 error do
 	status 500
