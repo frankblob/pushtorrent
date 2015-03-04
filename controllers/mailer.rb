@@ -25,7 +25,7 @@ def update_admin(body)
 	from = settings.mailfrom
 	to = settings.adminmail
 	subject = "Daily tracker update statistics"
-	body = "#{body.length} new torrent releases for #{body.join(', ')} were found during the last 24 hours."
+	body = "#{body.length} new torrent #{body.length == 1 ? 'release' : 'releases'} for  #{body.length > 0 ? body.join(', ') : 'any trackers '} found during the last 24 hours."
 	message = "From: #{settings.sitename} <#{from}>\nTo: #{to}\nSubject: #{subject}\n\n#{body}"
 	mailit!(to, message)
 end
