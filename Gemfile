@@ -15,5 +15,8 @@ gem "nokogiri"
 require "net/smtp" # necessary, when upgrading to third-party mail service?
 
 gem "thin", ">=1.6.3"
-gem "pg", :group => 'production'
-#gem "sqlite3", :group => 'development'
+gem "pg", group: :production
+gem "sqlite3", group: :development
+ 
+
+  
