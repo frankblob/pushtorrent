@@ -10,15 +10,17 @@ DB.create_table :users do
   column :email, :text, null: false
   column :password_digest, :text
   column :name, :text
-  column :type, :integer, null: false, default = 1
+  column :type, :integer, :default=>1, null: false
   column :created_at, :datetime
   column :updated_at, :datetime
   index :email, :unique=>true
   validate do
     presence :email
     min_length 5, :email
-    format /.+@.+\..+/i, :email
-    format /^[012]/, :type #0,1 or 2; non-registered, registered or paying/premium
+    unless :development
+      format /.+@.+\..+/i, :email
+      format /^[012]/, :type #0,1 or 2; non-registered, registered or paying/premium
+    end
   end
 end
 

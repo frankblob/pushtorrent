@@ -19,6 +19,7 @@ def find_updates
 	 		@updated << usertracker
 		end
 	end
+	updatepool = nil
 end
 
 def update_users
