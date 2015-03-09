@@ -1,7 +1,8 @@
 source "https://rubygems.org"
+ruby "2.2.0"
 
-gem "sinatra"
-gem "sequel" 
+gem "sinatra", ">=1.4.5", "< 2.0"
+gem "sequel", ">=4.20.0", "< 5.0"
 gem "sequel_secure_password"
 gem "oga"
 
@@ -13,11 +14,6 @@ require "open-uri" #for nokogiri only?
 gem "nokogiri"
 require "net/smtp" # necessary, when upgrading to third-party mail service?
 
-group :production do
-	gem "pg"
-end
-
-group :development do
-	gem "thin"
-	gem "sqlite3"
-end
+gem "thin", ">=1.6.3"
+gem "pg", :group => 'production'
+#gem "sqlite3", :group => 'development'
