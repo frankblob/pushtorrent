@@ -8,7 +8,6 @@ gem "oga"
 
 gem "logger"
 gem "sinatra-flash"
-#require "active_support/core_ext/string/conversions"
 
 require "open-uri"
 gem "nokogiri"

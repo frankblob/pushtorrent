@@ -3,7 +3,6 @@ require 'sequel'
 require 'sequel_secure_password'
 require 'open-uri'
 require 'nokogiri'
-require 'active_support/core_ext/string/conversions'
 require 'sinatra/flash'
 require 'dotenv' if development?
 require 'awesome_print' if development?
