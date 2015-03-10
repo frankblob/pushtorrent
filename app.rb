@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sequel'
 require 'sequel_secure_password'
+require 'time'
 require 'open-uri'
 require 'nokogiri'
 require 'sinatra/flash'

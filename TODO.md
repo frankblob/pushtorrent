@@ -29,7 +29,7 @@
 10. Deploy :)
 
 ### To-do improvements
-1. Check to_time gem necessity and time normalization in app and DB
+1. Analyze relevance of converting DB and app time stamps to ISO8601.  
 2. Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga) [Partially done - updater module uses Oga]
 3. Redesign the layout - with clear CTA
 4. Size and seeder sorted torrent search results.
@@ -53,7 +53,8 @@
 5. ~~Time-sorted feed from URL = 'ht<span>tps://</span>torrentz.eu/feedA?f='~~
 6. ~~[BUG] Torrent results listing of MB, seeders and date/time is error-prone and shows "XX Y"  (eg. "68 2") for some torrents with XX (68) seeders and Y (2) leechers.~~
 7. ~~[BUG] NoMethodError on 'exists?' for nil:NilClass during signup.~~
-8. ~~Develop user deletion procedure, including associations handling~~
+8. ~~Develop user deletion procedure, including associations handling.~~
+9. ~~Replaced Rails to_time gem to regular time gem.~~
 
 ###Ideas for 2.0
 1. Port Torrent Watch to [Volt](https://rubygems.org/gems/volt)?

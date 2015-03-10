@@ -19,10 +19,10 @@ post '/trackers/?' do
 		flash[:info] = "Delete your existing tracker first - or sign up (add your password) to get five trackers. It's free."
 		redirect '/user'
 	else
-		if User[email: params[:email]].present? && User[email: params[:email]].type == 1 || 2
+		if !User[email: params[:email]].nil? && User[email: params[:email]].type == 1 || 2
 			flash[:info] = "The email address #{params[:email]} already exists. Please log in to add more trackers."
 			redirect '/login'
-		elsif User[email: params[:email]].present? && User[email: params[:email]].type == 0
+		elsif !User[email: params[:email]].nil? && User[email: params[:email]].type == 0
 			session[:user_id] = User[email: params[:email]].id
 			flash[:info] = "Delete your existing tracker first - or sign up (add your password) to get five trackers. It's free."
 			redirect '/user'	

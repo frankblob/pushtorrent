@@ -12,7 +12,7 @@ post '/' do
 		erb :zerohits
 	else
 		@keywords = keywords
-		@timestamp = @results[0].at_css('pubDate').text.to_time
+		@timestamp = Time.parse(@results[0].at_css('pubDate').text)
 		erb :results
 	end
 end
@@ -25,10 +25,8 @@ get '/contact/?' do
 	erb :contact
 end
 
-# does this work/handle anything?
 error do
 	status 500
-	puts env['sinatra.error'].name
 	erb :four04
 end
 

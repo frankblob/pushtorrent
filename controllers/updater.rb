@@ -13,7 +13,7 @@ attr_reader :updatepool, :updated_trackers
 
 	def initialize
 		@updated_trackers = []
-		@updatepool = Tracker.where{updated_at < Time.now-86400}.all || []
+		@updatepool = Tracker.where{updated_at < Time.now-82800}.all || []
 		go!
 	end
 
@@ -27,7 +27,7 @@ private
 				search = KeywordSearch.new(tracker.keywords)
 				results = search.results || []
 				if !results.empty? #results can be nil if no releases or nonresponsive feed
-					timestamp = results[0].at_css('pubDate').text.to_time
+					timestamp = Time.parse(results[0].at_css('pubDate').text)
 					if timestamp > tracker.timestamp
 						tracker.timestamp = timestamp
 						tracker.save

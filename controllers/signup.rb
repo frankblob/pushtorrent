@@ -7,7 +7,7 @@ post '/signup/?' do
 	if /.+@.+\..+/i.match(params[:user][:email]).nil?
 		flash[:danger] = 'The email address you entered seems to be invalid. Please try again.'
 		redirect '/signup'
-	elsif User[email: params[:user][:email]].present?
+	elsif !User[email: params[:user][:email]].nil?
 		flash[:info] = "The email address #{params[:user][:email]} already exists. Please log in with your previously registered password."
 		redirect '/login'
 	elsif params[:user][:password].empty?
