@@ -6,30 +6,28 @@ DB.create_constraint_validations_table
 # Create a new User table with columns of
 # id, name, email and password_digest.
 DB.create_table :users do 
-  primary_key :id, :type=>Bignum
-  column :email, :text, null: false
-  column :password_digest, :text
-  column :name, :text
-  column :type, :integer, :default=>1, null: false
-  column :created_at, :datetime
-  column :updated_at, :datetime
+  primary_key :id, Integer
+  column :email, String, null: false
+  column :password_digest, String
+  column :name, String
+  column :type, String, :default=>"1", null: false
+  column :created_at, DateTime
+  column :updated_at, DateTime
   index :email, :unique=>true
   validate do
     presence :email
     min_length 5, :email
-    unless :development
-      format /.+@.+\..+/i, :email
-      format /^[012]/, :type #0,1 or 2; non-registered, registered or paying/premium
-    end
+    format /.+@.+\..+/i, :email
+    format /^[012]/, :type #0,1 or 2; non-registered, registered or paying/premium
   end
 end
 
 DB.create_table :trackers do 
   primary_key :id
-  column :keywords, :text, :null=>false
-  column :timestamp, :datetime, :null=>false
-  column :created_at, :datetime
-  column :updated_at, :datetime
+  column :keywords, String, :null=>false
+  column :timestamp, DateTime, :null=>false
+  column :created_at, DateTime
+  column :updated_at, DateTime
   index :keywords, :unique=>true
   index :timestamp
   validate do
@@ -42,7 +40,7 @@ DB.create_table :user_trackers do
     foreign_key :user_id, :users, :null=>false
     foreign_key :tracker_id, :trackers, :null=>false
     primary_key [:user_id, :tracker_id], :unique=>true
-    column :timestamp, :datetime, :null=>false
-    column :created_at, :datetime
-    column :updated_at, :datetime
+    column :timestamp, DateTime, :null=>false
+    column :created_at, DateTime
+    column :updated_at, DateTime
 end

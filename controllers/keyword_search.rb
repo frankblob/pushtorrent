@@ -24,7 +24,7 @@ class KeywordSearch
 			@data = Nokogiri::XML(open(url))
 		end	
 		if @data
-			@data.xpath('//channel/item')[0..9]#.sort_by{|x| x.at_css('pubDate').text.to_time}.reverse
+			@data.xpath('//channel/item')[0..9]
 		else
 			url = 'https://www.monova.org/rss.php?type=search&term=' + @url[/(?<==).*/]
 			puts "#3 switch: monova"

@@ -1,14 +1,11 @@
 require 'sinatra'
 require 'sequel'
 require 'sequel_secure_password'
+require 'time'
 require 'open-uri'
 require 'nokogiri'
 require 'sinatra/flash'
-require 'dotenv' if development?
-require 'awesome_print' if development?
-
-Dotenv.load
-
+ 
 require_relative 'db/init'
 require_relative 'models/init'
 require_relative 'controllers/init'
