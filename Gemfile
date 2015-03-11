@@ -13,4 +13,4 @@ gem "pg"
 gem "logger"
 gem "sinatra-flash"
 
-#gem "nokogiri"
+gem "nokogiri"
