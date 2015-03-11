@@ -59,3 +59,10 @@
 
 ###Ideas for 2.0
 1. Port PushTorrent to [Volt](https://rubygems.org/gems/volt)?
+
+##### Ruby questions I currently wonder about... 
+1. When do instance variables 'die'? Trying to understand the memory usage of Ruby apps...
+2. Is it worth it to manually set an instance variable = nil, when no longer in use? Or will Ruby GC do it for me?
+3. Why is GC for symbols great? Should I use symbols more and thereby, as a consequence, optimize the memory usage of the app?
+4. Will performance and memory utilization improve by replacing Nokogiri with Ox, Oga or even [Curb](https://rubygems.org/gems/curb), in terms of installed gems alone? Not focucing on the performance of the individual gems (Nokogori vs Ox parsing, for instance), but the number, dependencies and size of installed gems.
+5. Is it necessary to implement something akin to [referential integrity](https://github.com/orcasnet/activerecord-referential_integrity) for foreign keys in Sequel? Have done check and delete on "zero associations" in Sequel for now.
