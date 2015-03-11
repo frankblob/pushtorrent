@@ -1,5 +1,6 @@
 .env
 *.log
+*.pid.lock
 /db/*.db
 /public
 .bundle/

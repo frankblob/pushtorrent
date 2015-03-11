@@ -1,10 +1,10 @@
-# Welcome to 'Torrent Watch' 
+# Welcome to 'PushTorrent' 
 ## AKA 'contribs/name suggestions are welcome'
 
 Built with Ruby 2.2.0, [Sinatra](http://sinatrarb.com) 1.4.5 and [Nokogiri](http://www.nokogiri.org/) 1.6.5.
 
 ### Description of the web app's basic functionality
-Torrent Watch lets users opt-in to receive email notifications when new torrents of choice are ready for download. No need to do daily manual searches for newly released torrents, e.g. 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar.   
+PushTorrent lets users opt-in to receive email notifications when new torrents of choice are ready for download. No need to do daily manual searches for newly released torrents, e.g. 'ruby on rails', 'the stranger 720p HD', 'FLAC' or similar.   
 
 Why not get an email when the torrents you seek are released?
 
@@ -14,7 +14,7 @@ Sure. Check the [to-do](TODO.md) file.
 #### About me
 The project described above seems more complex than actually doable for someone with my current coding skill set. My personal goal is to hack away at this steep challenge and learn as much as possible.  
 
-In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at Ruby, object-oriented programming and GitHub. Torrent Watch is my first web application attempt besides auto-deploying a [RailsBricks3](http://railsbricks.net) app, since I could not get anything self-coded to work on Heroku :)
+In short I'm nobody, newbie and non-programmer. Dabbling in my first attempts at Ruby, object-oriented programming and GitHub. PushTorrent is my first web application attempt besides auto-deploying a [RailsBricks3](http://railsbricks.net) app, since I could not get anything self-coded to work on Heroku :)
 
 ##### Ruby questions I currently wonder about... 
 1. When do instance variables 'die'? Trying to understand the memory usage of Ruby apps...

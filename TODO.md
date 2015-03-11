@@ -1,5 +1,5 @@
 ## To-do list for MVP -> Beta -> RC -> 1.0 
-### Current Torrent Watch development bugs, issues, features and goals
+### Current PushTorrent development bugs, issues, features and goals
 
 ### UX to-dos
 1. Illogical redirect (false return) on "empty string" user input on results view -> redirected to front page.
@@ -57,4 +57,4 @@
 9. ~~Replaced Rails to_time gem to regular time gem.~~
 
 ###Ideas for 2.0
-1. Port Torrent Watch to [Volt](https://rubygems.org/gems/volt)?
+1. Port PushTorrent to [Volt](https://rubygems.org/gems/volt)?

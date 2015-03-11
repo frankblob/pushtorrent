@@ -1,4 +1,4 @@
-get '/twenty4hrupdater-first' do
+get '/twenty4hrupdater-first/?' do
 	updater = TrackerUpdater.new
 	mailcontent = updater.updated_trackers.map do |t|
 									Tracker[t].keywords

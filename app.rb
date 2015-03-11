@@ -1,10 +1,11 @@
 require 'sinatra'
-require 'sequel'
-require 'sequel_secure_password'
-require 'time'
-require 'open-uri'
-require 'nokogiri'
 require 'sinatra/flash'
+
+unless ENV["RACK_ENV"] == "production"
+	require 'dotenv'
+	require 'awesome_print'
+	Dotenv.load
+end
  
 require_relative 'db/init'
 require_relative 'models/init'

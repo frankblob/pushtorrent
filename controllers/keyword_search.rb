@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 class KeywordSearch
 
 	URL = 'https://torrentz.eu/feedA?f=' #date-sorted
@@ -14,7 +17,7 @@ class KeywordSearch
 
 	def results
 		begin
-			Timeout::timeout(1.25) do
+			Timeout::timeout(1.70) do
 				@data = Nokogiri::XML(open(@url))
 			end
 			print "Connect #1: torrentz\t"
