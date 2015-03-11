@@ -1,4 +1,4 @@
-# Welcome to 'PushTorrent' 
+# 'PushTorrent' 
 
 Built with Ruby 2.2.1, [Sinatra](http://sinatrarb.com) 1.4.5 and [Nokogiri](http://www.nokogiri.org/) 1.6.5.
 
