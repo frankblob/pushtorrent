@@ -1,1 +1,1 @@
-web: bundle exec passenger start -p $PORT
+web: rackup -s thin -p $PORT
