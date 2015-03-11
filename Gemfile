@@ -13,6 +13,4 @@ gem "pg"
 gem "logger"
 gem "sinatra-flash"
 
-require "open-uri"
-gem "nokogiri"
-require "net/smtp"
+#gem "nokogiri"
