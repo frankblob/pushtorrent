@@ -6,8 +6,7 @@ gem "sequel", ">=4.20.0", "< 5.0"
 gem "sequel_secure_password"
 #gem "oga"
 
-gem 'thin'
-#gem "passenger", ">=5.0.2"
+gem "thin"
 gem "pg"
 
 gem "logger"
