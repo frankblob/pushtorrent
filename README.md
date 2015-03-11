@@ -8,7 +8,7 @@ PushTorrent lets users opt-in to receive email notifications when named new torr
 Why not get an email when the torrents you seek are released?
 
 #### To-do list?
-Sure. Check the [to-do](TODO.md) file. 
+Sure. Check the [to-do](https://github.com/frankblob/pushtorrent/blob/master/TODO.md) file. 
 
 ##### Ruby questions I currently wonder about... 
 1. When do instance variables 'die'? Trying to understand the memory usage of Ruby apps...
