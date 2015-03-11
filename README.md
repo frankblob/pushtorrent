@@ -7,6 +7,11 @@ PushTorrent lets users opt-in to receive email notifications when named new torr
 
 Why not get an email when the torrents you seek are released?
 
+## Join this project
+All help is welcome. I'm glad to share this project with any interested contributors; newbie, experienced, young and old, english-speaking or english-trying. Contribute as you best can. That would perhaps be [correcting typos or similar](http://www.codenewbie.org/podcast/24-pull-requests) and submitting a [pull request](http://readwrite.com/2014/07/02/github-pull-request-etiquette) as detailed on the friendly, but easily over-stimulating pull request [walk-through](https://help.github.com/articles/using-pull-requests/) on Github. 
+
+Try it - and you have started collaborating! 
+
 #### To-do list?
 Sure. Check the [to-do](https://github.com/frankblob/pushtorrent/blob/master/TODO.md) file. 
 
@@ -16,11 +21,6 @@ Sure. Check the [to-do](https://github.com/frankblob/pushtorrent/blob/master/TOD
 3. Why is GC for symbols great? Should I use symbols more and thereby, as a consequence, optimize the memory usage of the app?
 4. Will performance and memory utilization improve by replacing Nokogiri with Ox, Oga or even [Curb](https://rubygems.org/gems/curb), in terms of installed gems alone? Not focucing on the performance of the individual gems (Nokogori vs Ox parsing, for instance), but the number, dependencies and size of installed gems.
 5. Is it necessary to implement something akin to [referential integrity](https://github.com/orcasnet/activerecord-referential_integrity) for foreign keys in Sequel? Have done check and delete on "zero associations" in Sequel for now.
-
-## Join this project
-All help is welcome. I'm glad to share this project with any interested contributors; newbie, experienced, young and old, english-speaking or english-trying. Contribute as you best can. That would perhaps be [correcting typos or similar](http://www.codenewbie.org/podcast/24-pull-requests) and submitting a [pull request](http://readwrite.com/2014/07/02/github-pull-request-etiquette) as detailed on the friendly, but easily over-stimulating pull request [walk-through](https://help.github.com/articles/using-pull-requests/) on Github. 
-
-Try it - and you have started collaborating! 
 
 Okay, that's it, I guess. 
 
