@@ -10,7 +10,7 @@ end
  
 if production?
 	require 'rack/ssl-enforcer'
-	use Rack::SslEnforcer, :only => ['/login', '/user', '/logout']
+	use Rack::SslEnforcer, :only => ['/login', '/user', '/logout'], :strict => true
 end
 
 require_relative 'db/init'
