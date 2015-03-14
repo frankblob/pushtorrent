@@ -10,7 +10,7 @@ end
  
 if production?
 	require 'rack/ssl-enforcer'
-	use Rack::SslEnforcer, :only => ['/login', '/user']
+	use Rack::SslEnforcer
 end
 
 require_relative 'db/init'
@@ -24,7 +24,7 @@ cookie_config = {
   :secret       => ENV["COOKIE_KEY"], 
   :httponly     => true
   }
-cookie_config.merge!( :secure => true ) if production? || ENV["RACK_ENV"] == "production"
+cookie_config.merge!( :secure => true ) if production?
 
 use Rack::Session::EncryptedCookie, cookie_config
 
