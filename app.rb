@@ -2,10 +2,11 @@ require 'sinatra'
 require 'sinatra/flash'
 require 'encrypted_cookie'
 
-unless ENV["RACK_ENV"] == "production"
+unless production? || ENV["RACK_ENV"] == "production"
 	require 'dotenv'
 	require 'awesome_print'
 	Dotenv.load
+	use Rack::SslEnforcer
 end
  
 require_relative 'db/init'

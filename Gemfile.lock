@@ -13,6 +13,7 @@ GEM
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
+    rack-ssl-enforcer (0.2.8)
     sequel (4.20.0)
     sequel_secure_password (0.2.12)
       bcrypt (>= 3.1, < 4.0)
@@ -37,6 +38,7 @@ DEPENDENCIES
   logger
   nokogiri
   pg
+  rack-ssl-enforcer
   sequel (>= 4.20.0, < 5.0)
   sequel_secure_password
   sinatra (>= 1.4.5, < 2.0)
