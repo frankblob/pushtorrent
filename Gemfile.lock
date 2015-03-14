@@ -3,6 +3,7 @@ GEM
   specs:
     bcrypt (3.1.10)
     daemons (1.1.9)
+    encrypted_cookie (0.0.4)
     eventmachine (1.0.7)
     logger (1.2.8)
     mini_portile (0.6.2)
@@ -32,6 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  encrypted_cookie
   logger
   nokogiri
   pg
