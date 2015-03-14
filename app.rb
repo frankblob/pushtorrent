@@ -3,9 +3,10 @@ require 'sinatra/flash'
 require 'encrypted_cookie'
 
 unless production? || ENV["RACK_ENV"] == "production"
-	require 'dotenv'
 	require 'awesome_print'
+	require 'dotenv'
 	Dotenv.load
+	require 'rack/ssl-enforcer'
 	use Rack::SslEnforcer
 end
  
