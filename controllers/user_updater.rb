@@ -10,7 +10,7 @@ get '/twenty4hruserupdate-second/?' do
 	else
 		update_admin_userupdates("Zero user update emails today", "No updates for usertrackers were found today.")
 	end
-	erb "<h3>Success!</h3><p>All done, went well.</p>. Proceed <a href="/">home</a>?"
+	erb "<h3>Success!</h3><p>All done, went well.</p>. Proceed <a href='/'>home</a>?"
 end
 
 def find_updates

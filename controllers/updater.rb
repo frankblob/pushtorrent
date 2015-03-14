@@ -5,7 +5,7 @@ get '/twenty4hrupdater-first/?' do
 								end
 	update_admin(mailcontent)
 	updater = nil
-	erb "<h3>Success!</h3><p>All done, went well.</p>. Proceed with <a href="/twenty4hruserupdate-second">next step</a> or return <a href="/">home</a>?"
+	erb "<h3>Success!</h3><p>All done, went well.</p>Proceed with <a href='/twenty4hruserupdate-second'>next step</a> or return <a href='/'>home</a>?"
 end
 
 class TrackerUpdater
