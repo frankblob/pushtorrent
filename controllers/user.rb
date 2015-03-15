@@ -15,7 +15,7 @@ patch '/user/?' do
 	if user = User.get(session[:user_id])
 		user.name = params[:user][:name]
 		user.save
-		flash[:success] = "You have added your name successfully, #{user.name}. Enjoy!"
+		flash[:success] = "That's great, #{user.name}. You have added your name successfully."
 		redirect '/user'
 	else
 		redirect '/login'
