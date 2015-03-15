@@ -25,7 +25,11 @@
 
 		<div class='col-md-4'>
 			<h2>Profile info</h2>
-			Name:<br/><%= @user.name ||= 'You have not entered your name yet!' %> [<a href="#">edit</a>]<br/>
+			Name:<br/><% if @user.name %>
+									<%= @user.name %><br/> 
+								<% else %>
+									<form action='/user' method='POST'><input type='text' placeholder='Add your name...' name='user[name]'><input type='hidden' name='_method' value='patch'><input type='submit' value='Save'></form>
+								<% end %>
 			Member since:<br/><%= @user.created_at.to_date %><br/>
 			Email:<br/><%= @user.email %> [<a href="#">change</a>]<br/>
 			[<a href="#">Change password</a>]<br/>
