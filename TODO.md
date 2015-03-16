@@ -8,28 +8,35 @@
   * Goal: Should stay on results "page" (Ajax?)
 
 ### Roadmap for core functionality / future features
-1. Develop module to dynamically generate static pages for DB stored trackers (keywords/search terms)
+1. Develop static site module for SEO-enhancement generated from DB stored trackers (keywords).
   * Auto-updated site map, with updated child nodes.
-2. Develop / install user forum
+2. Develop forum
   * Reuse user DB from app, to avoid double sign up in forum
   * [Discourse](http://www.discourse.org/)?
-3. Implement single tracker cration for unregistered users by entering email only + design view/form.
-4. Finalize remove user functionality via email confirmation.
-5. Dynamically generated list of 10 latest, most popular and highest seeded notifications, etc. along with 10 most recent forum
-  * Cron-job for 10 min interval update of the above, stored in file, to reduce DB querying?
-6. Learn and do testing.
-7. Evaluate need for [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level.
+3. Add [Que](https://github.com/chanks/que) to utilize modular architecture for UX speed enhancement.
+
 
 ### To-do improvements
+1. Finalize remove account functionality via email confirmation [Nobi](https://github.com/cyx/nobi).
+2. Implement single tracker cration for unregistered users by entering email only + design view/form.
 3. Redesign the layout - with clear CTA
 4. Size and seeder sorted torrent search results.
 5. Produce simple instructional video for home page
-6. Email [check](https://github.com/mailcheck/mailcheck) & routine
+6. Email [check](https://github.com/mailcheck/mailcheck)
 7. Ajax UX improvements
 8. Auto-reset of password via perishable token
 9. Remember me-functionality
 10. Merge/integrate app with separately developed updater, mailer and static page generation modules
   * Integrate as modular Sinatra app?
+11. Learn and do testing
+12. Dynamically generate list of 10 latest, most popular and highest seeded notifications, etc. along with 10 latest forum posts
+  * Cron-job for 10 min interval update of the above, stored in file, to reduce DB querying?
+13. Evaluate need for [numerical constraints](https://rubygems.org/gems/rein) and [foreign key constraints](https://rubygems.org/gems/foreigner) (for referential integrity) at the database level
+14. Add option to change user password
+15. Add user's forum activity to profile page; number of posts and latest post.
+16. Develop option for setting update interval for trackers; immediately/hourly, daily, weekly or monthly, along with buffer storing updates until released frequency is reached.
+17. Add 'pause' option for individual trackers
+
 
 ### Done
 1. ~~Timedate sorted torrent list~~
@@ -55,7 +62,10 @@
 14. ~~Test Nokogiri replacements [Ox](https://rubygems.org/gems/ox) and [Oga](https://rubygems.org/gems/oga) [Partially done - updater module uses Oga]~~
 15. ~~Replaced Rails gems with pure Ruby methods.~~
 16. ~~Add Procfile and config.ru~~
-17. ~~Deploy~~
+17. ~~Deploy alpha version to production environment~~
+18. ~~Switch to SSL~~
+19. ~~Implement secure cookies~~
+
 
 ###Ideas for 2.0
 1. Port PushTorrent to [Volt](https://rubygems.org/gems/volt)?
