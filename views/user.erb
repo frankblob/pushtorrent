@@ -7,7 +7,8 @@
 		<div class='col-md-8'>
 			<h2>Trackers:</h2>
 			<p>
-			Your notifications: sort by name | sort by created_date <br/>
+You currently have <%= @trackers.count %> active trackers</p>
+			sort by name | <a href="#">sort by date</a> <br/>
 			<ol>
 			<%# 
 			do partial here - for sort order
@@ -15,12 +16,9 @@
 			<% @trackers.sort_by(&:keywords).each do |tracker| %>
 				<% @trackers.sort_by(&:updated_at).reverse.each do |tracker| %>
 				<li>
-				<strong><%= tracker[:keywords] %></strong> <a href="#">Edit</a> | <a href="#">Pause</a> | <form action='/trackers' method='POST'><input type='hidden' name='_method' value='DELETE' /><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Remove'></form> | <a href="/trackers/<%= tracker[:id] %>">Remove</a><br />
-				Notification: immediately [x], daily, weekly, monthly [x].</li>
+				<strong><%= tracker[:keywords] %></strong> <form action='/trackers' method='GET'><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Edit'></form><form action='/trackers' method='POST'><input type='hidden' name='_method' value='DELETE' /><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Remove'></form><br /></li>
 				<% end %>
 			</ol>
-			<p>Active trackers: <%= @trackers.count %></p>
-			<p><a href="#">Notification archive</a> (22 listings)</p>
 		</div>
 
 		<div class='col-md-4'>
@@ -30,14 +28,14 @@
 								<% else %>
 									<form action='/user' method='POST'><input type='text' placeholder='Add your name...' name='user[name]'><input type='hidden' name='_method' value='patch'><input type='submit' value='Save'></form>
 								<% end %>
-			<strong>Email:</strong> <%= @user.email %> [<a href="#">change</a>]<br/>
+			<strong>Email:</strong> <%= @user.email %><br/>
 			<strong>Member since:</strong> <%= @user.created_at.to_date %><br/>
 			[<a href="#">Change password</a>]<br/>
-			<a href="#">Delete account</a> (confirmation required)<br/><br/>
+			[<a href="#">Delete account</a>]<br/><br/>
 
 			<h3>Forum activity</h3>
-			Number of <a href="#">forum</a> posts:<br/>1<br/>
-			Last forum post:<br/><a href="#">*NOOB* Why is there no category selection possible?</a><br/>
+			Number of <a href="/forum">forum</a> posts: 1<br/>
+			Latest post: <a href="/forum/:category/:id/:post/:id">*NOOB* Why is there no category?</a><br/>
 			</p>
 		</div>
 	
