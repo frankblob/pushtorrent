@@ -1,4 +1,8 @@
 <div class='container'>
+
+	<div class='row well'>
+		<div class='col-md-8'>
+	
 	<h2>Find your torrent</h2>
 	<form action='/' method='POST'>
 				
@@ -7,25 +11,9 @@
 		</div>
 
 	</form>
-	
-	<h2>Watch for new '<%= @keywords %>' torrents</h2>
-	<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are released and ready to download.<br/></p>
-	<table><tr>
-		<td>
-			Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
-			<small>Since you already know about the torrents below,<br/>you will only be notified about new releases. Nifty!<br/><a href="#">View example</a></small> 
-		</td>
-		<td>
-			<% if current_user? %>
-				<%= erb :_addtrackercurrentuserform %>
-			<% else %>
-				<%= erb :_addtrackernewuserform %>
-				<small>No monkey business. Promise.</small>
-			<% end %>
-		</td>
-	</tr></table>
-	<h3>Search results for '<%= @keywords %>': #file_size | #seeders | #date_uploaded </h3>
-	<p>This is currently the newest release for <%= @keywords %>. Yes, it is torrents like this I want. Push new torrents to me.</p>
+	<h3>Latest releases for '<%= @keywords %>' torrents:</h3>
+	sort by: <a href="#">size</a> | <a href="#">seeders</a> | date 
+	<p>This is currently the newest release for '<%= @keywords %>'. Yes, it is torrents like this I want. Push new torrents to me.</p>
 	<div class="notifier-button-small">
 		<% if current_user? %>
 			<%= erb :_addtrackercurrentuserform %>
@@ -46,5 +34,26 @@
 		Released: <%= li.at_css('pubDate').text.split[1..3].join(' ') %></li><br/>
 	<% end %>
 	</ul>
+	</div>
+
+	<div class='col-md-4'>
+
+	<h2>Watch for new '<%= @keywords %>' torrents</h2>
+	<p>We will notify you when new <strong>'<%= @keywords %>'</strong> torrents are released and ready to download.<br/></p>
+	<table><tr>
+		<td>
+			Get notified of new <strong>'<%= @keywords %>'</strong> torrents<br/>
+			<small>Since you already know about the torrents below,<br/>you will only be notified about new releases. Nifty!<br/><a href="#">View example</a></small> 
+		</td>
+		<td>
+			<% if current_user? %>
+				<%= erb :_addtrackercurrentuserform %>
+			<% else %>
+				<%= erb :_addtrackernewuserform %>
+				<small>No monkey business. Promise.</small>
+			<% end %>
+		</td>
+	</tr></table>
+	</div>
 
 </div>
