@@ -36,6 +36,7 @@
 15. Add user's forum activity to profile page; number of posts and latest post.
 16. Develop option for setting update interval for trackers; immediately/hourly, daily, weekly or monthly, along with buffer storing updates until released frequency is reached.
 17. Add 'pause' option for individual trackers
+18. Integrate results from several different sources (will cause delay in display - or update dynamically? Wrid/glitchy UX?), checking for duplicates and sorting on release time.
 
 
 ### Done
