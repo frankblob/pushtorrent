@@ -9,6 +9,7 @@ gem 'rack-ssl-enforcer'
 #gem "oga"
 
 gem "thin"
+gem 'que', ">=0.10.0"
 gem "pg"
 
 gem "logger"
