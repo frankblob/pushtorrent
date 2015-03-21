@@ -3,7 +3,7 @@ get '/twenty4hrupdater-first/?' do
 	mailcontent = updater.updated_trackers.map do |t|
 									Tracker[t].keywords
 								end
-	update_admin(mailcontent)
+	UpdateAdmin.enqueue(mailcontent)
 	updater = nil
 	erb "<h3>Success!</h3><p>All done, went well.</p>Proceed with <a href='/twenty4hruserupdate-second'>next step</a> or return <a href='/'>home</a>?"
 end
