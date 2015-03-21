@@ -1,24 +1,27 @@
 get '/twenty4hrupdater-first/?' do
-	updater = TrackerUpdater.new
-	mailcontent = updater.updated_trackers.map do |t|
-									Tracker[t].keywords
-								end
-	UpdateAdmin.enqueue(mailcontent)
-	updater = nil
+	DB.transaction do
+		TrackerUpdater.enqueue
+	end
 	erb "<h3>Success!</h3><p>All done, went well.</p>Proceed with <a href='/twenty4hruserupdate-second'>next step</a> or return <a href='/'>home</a>?"
 end
 
-class TrackerUpdater
-Tracker.plugin :touch
-attr_reader :updatepool, :updated_trackers
+class TrackerUpdater < Que::Job
+	Tracker.plugin :touch
+	attr_reader :updatepool, :updated_trackers
 
-	def initialize
+	def run
 		@updated_trackers = []
 		@updatepool = Tracker.where{updated_at < Time.now-82800}.all || []
-		go!
+		DB.transaction do
+		  mailcontent = go!
+		  destroy
+		  DB.transaction do
+	  		UpdateAdmin.enqueue(mailcontent)
+			end
+		end
 	end
 
-private
+	private
 		
 	def go!	
 		if @updatepool.empty?
@@ -40,6 +43,7 @@ private
 				end
 			end
 		end
+		@updated_trackers.map { |t| Tracker[t].keywords }
 	end
 
 end
