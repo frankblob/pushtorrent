@@ -4,11 +4,11 @@ get '/twenty4hruserupdate-second/?' do
 	if !@updated.empty?
 		@output = @updated.group_by {|x| x[:user_id]}
 		update_users 
-		update_admin_userupdates("User update email sent", admin_stats)
+		AdminUserUpdateStats.enqueue("User update email sent", admin_stats)
 		@updated = nil
 		@output = nil
 	else
-		update_admin_userupdates("Zero user update emails today", "No updates for usertrackers were found today.")
+		AdminUserUpdateStats.enqueue("Zero user update emails today", "No updates for usertrackers were found today.")
 	end
 	erb "<h3>Success!</h3><p>All done, went well.</p>. Proceed <a href='/'>home</a>?"
 end
@@ -29,7 +29,7 @@ def update_users
 		usertrackers.each do |usertracker|
 			@thisuser_update << Tracker[usertracker.tracker_id].keywords
 		end
-		new_torrents(User[user].email, @thisuser_update)
+		NewTorrents.enqueue(User[user].email, @thisuser_update)
 		usertrackers.each do |usertracker|
 			usertracker.timestamp = Tracker[usertracker.tracker_id].timestamp
 		end

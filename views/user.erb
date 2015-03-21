@@ -16,7 +16,8 @@ You currently have <%= @trackers.count %> active trackers</p>
 			<% @trackers.sort_by(&:keywords).each do |tracker| %>
 				<% @trackers.sort_by(&:updated_at).reverse.each do |tracker| %>
 				<li>
-				<strong><%= tracker[:keywords] %></strong> <form action='/trackers' method='GET'><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Edit'></form><form action='/trackers' method='POST'><input type='hidden' name='_method' value='DELETE' /><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Remove'></form><br /></li>
+				<strong><%= tracker[:keywords] %></strong> <div style="text-align:left;display: inline-block"><form action='/trackers' method='POST'><input type='hidden' name='_method' value='DELETE' /><input type='hidden' name='tracker_id' value='<%= tracker[:id] %>'><input type='submit' value='Remove'></form></div><br /></li>
+				<p></p>
 				<% end %>
 			</ol>
 		</div>

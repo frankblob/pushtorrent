@@ -18,7 +18,9 @@ post '/signup/?' do
 		if user.save
 			session[:user_id] = user.id
 			flash[:success] = 'You have signed up and everything is ready to go. Enjoy!'
-			signup_confirmation(user.email)
+			DB.transaction do
+				SignupConfirmation.enqueue(user.email)
+			end
 			redirect '/user'
 		else 
 			flash[:warning] = 'Your sign up did not succeed. Please try again.'
