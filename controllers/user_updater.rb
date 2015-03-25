@@ -10,7 +10,7 @@ get '/twenty4hruserupdate-second/?' do
 	else
 		AdminUserUpdateStats.enqueue("Zero user update emails today", "No updates for usertrackers were found today.")
 	end
-	erb "<h3>Success!</h3><p>All done, went well.</p>. Proceed <a href='/'>home</a>?"
+	erb "<p>Proceed <a href='/'>home</a>?</p>"
 end
 
 def find_updates
@@ -37,5 +37,5 @@ def update_users
 end
 
 def admin_stats
-	"#{@updated.count} #{@updated.count == 1 ? "usertracker " : "usertrackers "} #{@updated.count == 1 ? "was " : "were "} updated today for #{@output.count} different users."
+	"#{@updated.count} #{@updated.count == 1 ? "usertracker" : "usertrackers"} #{@updated.count == 1 ? "was" : "were"} updated today for #{@output.count} individual #{@output.count == 1 ? "user" : "users "} ."
 end

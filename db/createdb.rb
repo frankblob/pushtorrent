@@ -24,8 +24,8 @@ end
 
 DB.create_table :trackers do 
   primary_key :id
-  column :keywords, String, :null=>false
-  column :timestamp, DateTime, :null=>false
+  column :keywords, String, null: false
+  column :timestamp, DateTime, null: false
   column :created_at, DateTime
   column :updated_at, DateTime
   index :keywords, :unique=>true
@@ -37,10 +37,10 @@ DB.create_table :trackers do
 end
 
 DB.create_table :user_trackers do
-    foreign_key :user_id, :users, :null=>false
-    foreign_key :tracker_id, :trackers, :null=>false
+    foreign_key :user_id, :users, null: false
+    foreign_key :tracker_id, :trackers, null: false
     primary_key [:user_id, :tracker_id], :unique=>true
-    column :timestamp, DateTime, :null=>false
+    column :timestamp, DateTime, null: false
     column :created_at, DateTime
     column :updated_at, DateTime
 end

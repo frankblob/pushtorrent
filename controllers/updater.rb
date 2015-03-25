@@ -1,8 +1,6 @@
 get '/twenty4hrupdater-first/?' do
-	DB.transaction do
-		TrackerUpdater.enqueue
-	end
-	erb "<h3>Success!</h3><p>All done, went well.</p>Proceed with <a href='/twenty4hruserupdate-second'>next step</a> or return <a href='/'>home</a>?"
+	TrackerUpdater.enqueue
+	erb "<h3>Success!</h3><p>Proceed with <a href='/twenty4hruserupdate-second'>next step</a> or return <a href='/'>home</a>?</p>"
 end
 
 class TrackerUpdater < Que::Job
@@ -13,11 +11,9 @@ class TrackerUpdater < Que::Job
 		@updated_trackers = []
 		@updatepool = Tracker.where{updated_at < Time.now-82800}.all || []
 		DB.transaction do
-		  mailcontent = go!
+		  go!
 		  destroy
-		  DB.transaction do
-	  		UpdateAdmin.enqueue(mailcontent)
-			end
+	  	UpdateAdmin.enqueue(@updated_trackers)
 		end
 	end
 
@@ -43,7 +39,7 @@ class TrackerUpdater < Que::Job
 				end
 			end
 		end
-		@updated_trackers.map { |t| Tracker[t].keywords }
+		@updated_trackers.map! { |t| Tracker[t].keywords }
 	end
 
 end
