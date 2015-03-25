@@ -16,6 +16,9 @@ GEM
       rack
     rack-ssl-enforcer (0.2.8)
     sequel (4.20.0)
+    sequel_pg (1.6.12)
+      pg (>= 0.8.0)
+      sequel (>= 3.39.0)
     sequel_secure_password (0.2.12)
       bcrypt (>= 3.1, < 4.0)
       sequel (>= 4.1.0, < 5.0)
@@ -42,6 +45,7 @@ DEPENDENCIES
   que (>= 0.10.0)
   rack-ssl-enforcer
   sequel (>= 4.20.0, < 5.0)
+  sequel_pg (>= 1.6.12)
   sequel_secure_password
   sinatra (>= 1.4.5, < 2.0)
   sinatra-flash

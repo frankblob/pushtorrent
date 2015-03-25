@@ -4,7 +4,7 @@ ruby "2.2.1"
 gem "sinatra", ">=1.4.5", "< 2.0"
 gem "sequel", ">=4.20.0", "< 5.0"
 gem "sequel_secure_password"
-gem 'sequel_pg', :require=>'sequel'
+gem 'sequel_pg', ">=1.6.12", :require=>'sequel'
 gem 'encrypted_cookie'
 gem 'rack-ssl-enforcer'
 #gem "oga"
