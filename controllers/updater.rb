@@ -10,11 +10,13 @@ class TrackerUpdater < Que::Job
 	def run
 		@updated_trackers = []
 		@updatepool = Tracker.where{updated_at < Time.now-82800}.all || []
-		DB.transaction do
+#		DB.transaction do
 		  go!
-		  destroy
+#		  destroy
+		DB.transaction do
 	  	UpdateAdmin.enqueue(@updated_trackers)
-		end
+	  	destroy
+	  end
 	end
 
 	private
@@ -29,8 +31,11 @@ class TrackerUpdater < Que::Job
 				if !results.empty? #results can be nil if no releases or nonresponsive feed
 					timestamp = Time.parse(results[0].at_css('pubDate').text)
 					if timestamp > tracker.timestamp
-						tracker.timestamp = timestamp
-						tracker.save
+						DB.transaction do
+							tracker.timestamp = timestamp
+							tracker.save
+							destroy
+						end
 						@updated_trackers << tracker.id
 						#sleep 3 #to avoid ban for hammering feed source?
 					else

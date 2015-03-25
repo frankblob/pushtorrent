@@ -32,6 +32,7 @@ def update_users
 		NewTorrents.enqueue(User[user].email, @thisuser_update)
 		usertrackers.each do |usertracker|
 			usertracker.timestamp = Tracker[usertracker.tracker_id].timestamp
+			usertracker.save
 		end
 	end
 end
