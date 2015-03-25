@@ -10,9 +10,7 @@ class TrackerUpdater < Que::Job
 	def run
 		@updated_trackers = []
 		@updatepool = Tracker.where{updated_at < Time.now-82800}.all || []
-#		DB.transaction do
-		  go!
-#		  destroy
+		go!
 		DB.transaction do
 	  	UpdateAdmin.enqueue(@updated_trackers)
 	  	destroy
@@ -31,15 +29,12 @@ class TrackerUpdater < Que::Job
 				if !results.empty? #results can be nil if no releases or nonresponsive feed
 					timestamp = Time.parse(results[0].at_css('pubDate').text)
 					if timestamp > tracker.timestamp
-						DB.transaction do
-							tracker.timestamp = timestamp
-							tracker.save
-							destroy
-						end
+						tracker.timestamp = timestamp
+						tracker.save
 						@updated_trackers << tracker.id
 						#sleep 3 #to avoid ban for hammering feed source?
 					else
-						tracker.touch #why? To show it has been processed, but leave timestamp
+						tracker.touch #why? To show it has been processed, but leave timestamp. Does it work???
 					end
 				end
 			end
