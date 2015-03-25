@@ -1,24 +1,22 @@
 get '/twenty4hrupdater-first/?' do
-	TrackerUpdater.enqueue
+	run_update = TrackerUpdater.new
+	run_update = nil
 	erb "<h3>Success!</h3><p>Proceed with <a href='/twenty4hruserupdate-second'>next step</a> or return <a href='/'>home</a>?</p>"
 end
 
-class TrackerUpdater < Que::Job
+class TrackerUpdater
 	Tracker.plugin :touch
 	attr_reader :updatepool, :updated_trackers
 
-	def run
+	def initialize
 		@updated_trackers = []
 		@updatepool = Tracker.where{updated_at < Time.now-82800}.all || []
 		go!
-		DB.transaction do
-	  	UpdateAdmin.enqueue(@updated_trackers)
-	  	destroy
-	  end
+		UpdateAdmin.enqueue(@updated_trackers)
 	end
 
 	private
-		
+
 	def go!	
 		if @updatepool.empty?
 			@updated_trackers = []

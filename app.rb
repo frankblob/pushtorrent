@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/flash'
 require 'encrypted_cookie'
+require 'tilt/erubis'
 
 if development?
 	require 'awesome_print'
